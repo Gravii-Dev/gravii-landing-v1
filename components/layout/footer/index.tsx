@@ -1,30 +1,21 @@
-import Logo from '@/components/ui/darkroom.svg'
-import { Link } from '@/components/ui/link'
+import s from './footer.module.css'
 
 export function Footer() {
   return (
-    <footer className="flex dt:flex-row flex-col dt:items-end items-center justify-between p-safe font-mono uppercase">
-      <Link
-        href="https://darkroom.engineering/"
-        className="link"
-        aria-label="Darkroom Engineering"
-      >
-        <Logo className="dr-w-148 text-secondary" aria-hidden="true" />
-      </Link>
-      <div>
-        <Link
-          href="https://github.com/darkroomengineering/satus/generate"
-          className="link"
-        >
-          use this template
-        </Link>
-        {' / '}
-        <Link
-          href="https://github.com/darkroomengineering/satus"
-          className="link"
-        >
-          github
-        </Link>
+    <footer className={s.footer}>
+      <div className={s.container}>
+        <div className={s.content}>
+          <div className={s.brand}>
+            <span className={s.logo}>Gravii</span>
+            <p className={s.tagline}>Your Personal Concierge</p>
+          </div>
+          <div className={s.links}>
+            {/* 추가 링크들이 여기에 들어갈 수 있습니다 */}
+          </div>
+        </div>
+        <div className={s.copyright}>
+          <p>© {new Date().getFullYear()} Gravii. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   )

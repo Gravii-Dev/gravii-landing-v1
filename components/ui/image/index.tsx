@@ -164,10 +164,13 @@ export function Image({
   aspectRatio,
   placeholder = 'blur',
   preload = false,
+  priority,
   ...props
 }: ImageProps) {
-  // Determine loading strategy
-  const finalLoading = loading ?? (preload ? 'eager' : 'lazy')
+  // Determine loading strategy - priority overrides everything
+  const finalLoading = priority
+    ? undefined
+    : (loading ?? (preload ? 'eager' : 'lazy'))
 
   // Generate responsive sizes if not provided
   const finalSizes =
@@ -201,7 +204,8 @@ export function Image({
       fill={!block}
       {...(width !== undefined && { width })}
       {...(height !== undefined && { height })}
-      loading={finalLoading}
+      {...(finalLoading && { loading: finalLoading })}
+      {...(priority && { priority })}
       quality={quality}
       alt={alt}
       style={{

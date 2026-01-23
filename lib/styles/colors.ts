@@ -6,9 +6,10 @@ const colors = {
   green: '#00ff88',
   purple: '#7928ca',
   pink: '#ff0080',
+  orange: '#ff7a00',
 } as const
 
-const themeNames = ['light', 'dark', 'red', 'evil'] as const
+const themeNames = ['light', 'dark', 'red', 'evil', 'gravii'] as const
 const colorNames = ['primary', 'secondary', 'contrast'] as const
 
 const themes = {
@@ -30,6 +31,11 @@ const themes = {
   red: {
     primary: colors.red,
     secondary: colors.black,
+    contrast: colors.white,
+  },
+  gravii: {
+    primary: colors.black,
+    secondary: colors.orange,
     contrast: colors.white,
   },
 } as const satisfies Themes

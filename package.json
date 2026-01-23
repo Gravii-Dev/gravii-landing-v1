@@ -1,6 +1,6 @@
 {
-  "name": "@darkroom.engineering/satus",
-  "description": "Satūs is a next.js starter",
+  "name": "gravii-lp",
+  "description": "Gravii Landing Page",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",
@@ -62,7 +62,6 @@
     "@biomejs/biome": "2.3.11",
     "@clack/prompts": "^0.11.0",
     "@csstools/postcss-global-data": "^3.1.0",
-    "@hubspot/api-client": "^13.4.0",
     "@next/bundle-analyzer": "16.1.1",
     "@sanity/vision": "^5.2.0",
     "@svgr/webpack": "^8.1.0",

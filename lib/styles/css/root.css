@@ -48,6 +48,7 @@
 	--color-green: #00ff88;
 	--color-purple: #7928ca;
 	--color-pink: #ff0080;
+	--color-orange: #ff7a00;
 	
 	@variant dt {
     --device-width: 1440;

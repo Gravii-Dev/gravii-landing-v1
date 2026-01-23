@@ -1,92 +1,73 @@
 'use client'
 
-import cn from 'clsx'
-import { usePathname } from 'next/navigation'
-import { Link } from '@/components/ui/link'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useEffect, useRef } from 'react'
+import s from './header.module.css'
 
-// Navigation links - customize for your project
-const LINKS = [
-  { href: '/', label: 'home' },
-  { href: '/#features', label: 'features' },
-  {
-    href: 'https://github.com/darkroomengineering/satus',
-    label: 'github',
-    external: true,
-  },
-] as const
-
-// Example pages demonstrating integrations
-const EXAMPLES = [
-  { href: '/components', label: 'components' },
-  { href: '/r3f', label: 'r3f' },
-  { href: '/sanity', label: 'sanity' },
-  { href: '/shopify', label: 'shopify' },
-  { href: '/hubspot', label: 'hubspot' },
-]
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 export function Header() {
-  const pathname = usePathname()
-  const isExamplePage = EXAMPLES.some(
-    (ex) => pathname === ex.href || pathname.startsWith(`${ex.href}/`)
-  )
+  const headerRef = useRef<HTMLElement>(null)
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    if (!headerRef.current) return
+
+    const showAnim = gsap
+      .from(headerRef.current, {
+        yPercent: -100,
+        paused: true,
+        duration: 0.3,
+        ease: 'power2.out',
+      })
+      .progress(1)
+
+    const trigger = ScrollTrigger.create({
+      start: 'top top',
+      end: 'max',
+      onUpdate: (self) => {
+        if (self.direction === 1) {
+          showAnim.reverse()
+        } else {
+          showAnim.play()
+        }
+      },
+    })
+
+    return () => {
+      trigger.kill()
+      showAnim.kill()
+    }
+  }, [])
 
   return (
-    <nav className="fixed top-safe left-safe z-2 flex flex-col font-mono dt:text-[11px] text-[10px] uppercase">
-      {/* Root level: Logo + current path */}
-      <h1 className="dt:text-[13px] text-[12px]">
-        Satūs<span className="opacity-50">{pathname}</span>
-      </h1>
+    <header ref={headerRef} className={s.header}>
+      <nav className={s.nav}>
+        <div className={s.container}>
+          {/* Logo */}
+          <button
+            id="header-logo"
+            onClick={scrollToTop}
+            className={s.logo}
+            type="button"
+          >
+            Gravii
+          </button>
 
-      {/* Level 1: Main navigation */}
-      <ul className="dr-pl-12 mt-1 flex flex-col gap-px">
-        {LINKS.map((link) => {
-          const isExternal = 'external' in link && link.external
-          return (
-            <li key={link.href} className="flex items-center gap-1">
-              <span className="w-2 opacity-50">
-                {pathname === link.href ? '›' : ''}
-              </span>
-              <Link
-                href={link.href}
-                className="link"
-                {...(isExternal && {
-                  target: '_blank',
-                  rel: 'noopener noreferrer',
-                })}
-              >
-                {link.label}
-                {isExternal && '↗'}
-              </Link>
-            </li>
-          )
-        })}
-        {/* Examples with nested level 2 */}
-        <li className="flex flex-col">
-          <div className="flex items-center gap-1">
-            <span className="w-2 opacity-50">{isExamplePage ? '›' : ''}</span>
-            <span>examples</span>
+          {/* Connect Wallet Button */}
+          <div className={s.actions}>
+            <button className={s.walletButton} type="button">
+              Connect Wallet
+            </button>
           </div>
-          {/* Level 2: Examples sub-navigation */}
-          <ul className="dr-pl-12 mt-px flex flex-col gap-px">
-            {EXAMPLES.map((link) => (
-              <li key={link.href} className="flex items-center gap-1">
-                <span className="w-2 opacity-50">
-                  {pathname === link.href ? '›' : ''}
-                </span>
-                <Link
-                  href={link.href}
-                  className={cn(
-                    'link transition-opacity hover:opacity-100',
-                    pathname === link.href ? 'opacity-100' : 'opacity-40'
-                  )}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </li>
-      </ul>
-    </nav>
+        </div>
+      </nav>
+    </header>
   )
 }

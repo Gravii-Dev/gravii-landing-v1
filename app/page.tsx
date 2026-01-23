@@ -1,29 +1,41 @@
-/**
- * Satus Homepage
- *
- * This page showcases Satus features. When using Satus as a template:
- * 1. Replace this content with your own homepage
- * 2. Delete the app/(marketing)/_sections folder
- *
- * Or keep it as inspiration for your own marketing pages!
- */
 import { Analytics } from '@vercel/analytics/react'
 import { Wrapper } from '@/components/layout/wrapper'
-import { Features } from './(marketing)/_sections/features'
-import { GettingStarted } from './(marketing)/_sections/getting-started'
-import { Hero } from './(marketing)/_sections/hero'
-import { Presets } from './(marketing)/_sections/presets'
-import { ValueProps } from './(marketing)/_sections/value-props'
+import { SplashGate } from '@/components/ui/splash-gate'
+import { ConnectSection } from './(home)/_sections/connect'
+import { HeroSection } from './(home)/_sections/hero'
+import { IDSection } from './(home)/_sections/id'
+import { LabelsSection } from './(home)/_sections/labels'
+import { PersonaSection } from './(home)/_sections/persona'
 
 export default function Home() {
   return (
-    <Wrapper theme="dark" lenis={{}}>
-      <Hero />
-      <ValueProps />
-      <Features />
-      <Presets />
-      <GettingStarted />
-      <Analytics />
-    </Wrapper>
+    <SplashGate
+      imageSrc="/img/splash-text.png"
+      imageAlt="Welcome to Gravii"
+      imageMaxWidthPx={1800}
+      durationMs={1500}
+      bgSrc="/img/splash-bg.webp"
+    >
+      <Wrapper theme="gravii" lenis={{}}>
+        {/* 전체 페이지 고정 배경 */}
+        <div
+          className="pointer-events-none fixed inset-0 -z-10"
+          style={{
+            backgroundImage: "url('/bg/black_grid.jpg')",
+            backgroundRepeat: 'repeat',
+            backgroundSize: 'auto',
+            backgroundPosition: '0 0',
+          }}
+        />
+        <main id="main-content">
+          <HeroSection />
+          <PersonaSection />
+          <ConnectSection />
+          <IDSection />
+          <LabelsSection />
+        </main>
+        <Analytics />
+      </Wrapper>
+    </SplashGate>
   )
 }

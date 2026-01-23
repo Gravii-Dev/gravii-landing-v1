@@ -19,6 +19,7 @@
 	--color-green: #00ff88;
 	--color-purple: #7928ca;
 	--color-pink: #ff0080;
+	--color-orange: #ff7a00;
     
   --spacing-*: initial;
 	--spacing-0: 0;
@@ -70,6 +71,11 @@
 [data-theme=red] {
   --color-primary: #e30613;
 	--color-secondary: #000000;
+	--color-contrast: #ffffff;
+}
+[data-theme=gravii] {
+  --color-primary: #000000;
+	--color-secondary: #ff7a00;
 	--color-contrast: #ffffff;
 }
   
@@ -126,6 +132,7 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant evil (&:where([data-theme=evil], [data-theme=evil] *));
 @custom-variant red (&:where([data-theme=red], [data-theme=red] *));
+@custom-variant gravii (&:where([data-theme=gravii], [data-theme=gravii] *));
 
 /** Custom function utilities **/
 @utility dr-text-* {

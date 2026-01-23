@@ -1,0 +1,23 @@
+.section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.title {
+  position: absolute;
+  font-family: var(--font-dripdrop), system-ui, sans-serif;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  z-index: 20;
+  will-change: transform;
+  font-size: 8vw;
+  opacity: 0;
+}
