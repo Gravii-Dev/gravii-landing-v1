@@ -1,17 +1,36 @@
 .section {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: transparent;
+  composes: section-base-start from "@/lib/styles/shared/sections.module.css";
+  background-color: #8ab88a;
+  background-image: url("/bg/bright-green.png");
+  z-index: 200;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  position: relative;
-  z-index: 10;
+  composes: section-container from "@/lib/styles/shared/sections.module.css";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+.header {
+  composes: section-header-small from "@/lib/styles/shared/sections.module.css";
+}
+
+.label {
+  composes: section-label from "@/lib/styles/shared/sections.module.css";
+}
+
+.title {
+  composes: section-title-medium from "@/lib/styles/shared/sections.module.css";
+}
+
+.subtitle {
+  composes: section-subtitle from "@/lib/styles/shared/sections.module.css";
+}
+
+/* Card - override some CardPersonaPreview styles */
+.card {
+  /* Remove float animation for static display */
+  animation: none;
 }

@@ -46,10 +46,9 @@ export function SplashGate({
       {children}
 
       {phase !== 'done' && (
-        <div
+        <output
           className={cn(s.splash, phase === 'fade' && s.fadeOut)}
           style={bgSrc ? { backgroundImage: `url('${bgSrc}')` } : undefined}
-          role="status"
           aria-live="polite"
           aria-label="Loading"
         >
@@ -74,7 +73,7 @@ export function SplashGate({
           ) : (
             <p className={s.message}>{message}</p>
           )}
-        </div>
+        </output>
       )}
     </>
   )

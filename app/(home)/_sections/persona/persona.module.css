@@ -3,6 +3,7 @@
   height: 100vh;
   overflow: hidden;
   background-color: transparent;
+  z-index: 1;
 }
 
 .track {
@@ -12,6 +13,8 @@
   height: 100%;
   width: fit-content;
   gap: 1.5rem;
+  padding-left: calc(50vw - 15rem);
+  padding-right: 15vw;
 }
 
 .slide {
@@ -26,10 +29,11 @@
   position: relative;
 }
 
-.slide > .text-3d-float {
+.slide > :global(.text-3d-float) {
   position: absolute;
   top: 5rem;
   left: 50%;
+  transform: translateX(-50%);
   z-index: 20;
   pointer-events: none;
 }

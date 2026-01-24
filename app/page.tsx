@@ -9,22 +9,16 @@ import { PersonaSection } from './(home)/_sections/persona'
 
 export default function Home() {
   return (
-    <SplashGate
-      imageSrc="/img/splash-text.png"
-      imageAlt="Welcome to Gravii"
-      imageMaxWidthPx={1800}
-      durationMs={1500}
-      bgSrc="/img/splash-bg.webp"
-    >
-      <Wrapper theme="gravii" lenis={{}}>
-        {/* 전체 페이지 고정 배경 */}
+    <SplashGate message="GRAVII" durationMs={1500} bgSrc="/bg/gray-wall.png">
+      <Wrapper theme="gravii" lenis={{}} snap>
+        {/* Hero/Persona 섹션 고정 배경 */}
         <div
           className="pointer-events-none fixed inset-0 -z-10"
           style={{
-            backgroundImage: "url('/bg/black_grid.jpg')",
-            backgroundRepeat: 'repeat',
-            backgroundSize: 'auto',
-            backgroundPosition: '0 0',
+            backgroundImage: "url('/bg/gray-wall.png')",
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
         />
         <main id="main-content">

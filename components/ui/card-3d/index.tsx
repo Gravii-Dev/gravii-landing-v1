@@ -16,22 +16,11 @@ export function Card3D({ imageSrc, backText, title, className }: Card3DProps) {
   const [isFlipped, setIsFlipped] = useState(false)
 
   return (
-    <div className={cn(s.wrapper, className)}>
-      <div
-        className={cn(s.card, s.cardFloat)}
+    <div className={cn(s.wrapper, s.wrapperFloat, className)}>
+      <button
+        type="button"
+        className={cn(s.card, isFlipped && s.cardFlipped)}
         onClick={() => setIsFlipped(!isFlipped)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            setIsFlipped(!isFlipped)
-          }
-        }}
-        style={{
-          transform: isFlipped
-            ? 'rotateY(180deg) rotateX(5deg) rotateZ(-2deg)'
-            : 'rotateY(-5deg) rotateX(5deg) rotateZ(-2deg)',
-        }}
-        role="button"
-        tabIndex={0}
         aria-pressed={isFlipped}
       >
         {/* 앞면 - 이미지 */}
@@ -53,7 +42,7 @@ export function Card3D({ imageSrc, backText, title, className }: Card3DProps) {
             <p className={s.text}>{backText}</p>
           </div>
         </div>
-      </div>
+      </button>
     </div>
   )
 }

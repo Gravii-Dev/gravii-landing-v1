@@ -1,17 +1,63 @@
 .section {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: transparent;
+  composes: section-base from "@/lib/styles/shared/sections.module.css";
+  background-color: #4a9a9a;
+  background-image: url("/bg/turquoise-concrete.png");
+  z-index: 100;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  position: relative;
-  z-index: 10;
+  composes: section-container from "@/lib/styles/shared/sections.module.css";
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Input styles for Check Wallet card */
+.inputWrapper {
+  margin: 0.5rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px dashed #1a1a1a;
+  background: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.875rem;
+  color: #1a1a1a;
+  border-radius: 4px;
+}
+
+.input::placeholder {
+  color: #888;
+}
+
+.hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  color: #4a4a4a;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+}
+
+.hintIcon {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid #4a4a4a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.625rem;
 }

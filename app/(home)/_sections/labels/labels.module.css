@@ -1,17 +1,225 @@
 .section {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: transparent;
+  composes: section-base from "@/lib/styles/shared/sections.module.css";
+  background-color: #f5f5f0;
+  background-image: url("/bg/summer-orange.png");
+  background-attachment: fixed;
+  z-index: 300;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
+  composes: section-container from "@/lib/styles/shared/sections.module.css";
+}
+
+/* Header */
+.header {
+  composes: section-header from "@/lib/styles/shared/sections.module.css";
+}
+
+.title {
+  composes: section-title-large from "@/lib/styles/shared/sections.module.css";
+}
+
+/* Content Grid */
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+@media (max-width: 799px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Vintage Paper Card */
+.card {
+  composes: vintageCardLabels from "@/lib/styles/shared/vintage-card.module.css";
+}
+
+.card:nth-child(2) {
+  transform: rotate(1deg);
+}
+
+.card:hover {
+  transform: rotate(0deg) scale(1.01);
+}
+
+.cardInner {
   position: relative;
+  padding: 2rem;
+  z-index: 3;
+}
+
+.cardTitle {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #1a1a1a;
+  margin: 0 0 1.5rem;
+}
+
+/* Labels List */
+.labelsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.labelItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.labelItem:hover,
+.labelItem.active:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.labelLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.labelIndicator {
+  width: 4px;
+  height: 24px;
+  border-radius: 2px;
+}
+
+.labelIcon {
+  font-size: 1rem;
+}
+
+.labelName {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #1a1a1a;
+}
+
+.labelArrow {
+  font-size: 1rem;
+  color: #666;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.labelItem:hover .labelArrow {
+  opacity: 1;
+}
+
+/* Analytics Panel (Right Card) */
+.panelTag {
+  position: absolute;
+  top: -0.5rem;
+  right: 1.5rem;
+  padding: 0.25rem 0.75rem;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #fff;
+  text-transform: uppercase;
+  transform: rotate(3deg);
   z-index: 10;
+}
+
+.panelIcon {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.panelTitle {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem;
+}
+
+.panelDesc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* Metrics */
+.metricsSection {
+  margin-top: 1.5rem;
+}
+
+.metricsTitle {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #1a1a1a;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.metricsTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.metricTag {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #1a1a1a;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  background: transparent;
+}
+
+/* Use Cases */
+.useCasesSection {
+  margin-top: 1.5rem;
+}
+
+.useCasesTitle {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #1a1a1a;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.useCasesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.useCase {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.useCaseUnderline {
+  display: none;
 }

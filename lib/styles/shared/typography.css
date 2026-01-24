@@ -1,0 +1,26 @@
+/* Display font utilities */
+.text-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.text-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+/* Common text styles */
+.text-label {
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #1a1a1a;
+}
+
+.text-title {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}

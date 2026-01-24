@@ -24,10 +24,10 @@
 }
 
 .logo {
-  font-family: var(--font-dripdrop), system-ui, sans-serif;
+  font-family: var(--font-display), system-ui, sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--brand-orange);
+  color: #000;
   background: none;
   border: none;
   cursor: pointer;
@@ -53,11 +53,11 @@
 .walletButton {
   padding: 0.5rem 1.5rem;
   border-radius: 9999px;
-  border: 2px solid var(--brand-orange);
-  font-family: var(--font-dripdrop), system-ui, sans-serif;
+  border: 2px solid #000;
+  font-family: var(--font-display), system-ui, sans-serif;
   font-weight: 700;
   font-size: 0.875rem;
-  color: var(--brand-orange);
+  color: #000;
   background: transparent;
   cursor: pointer;
   transition: all 300ms ease;
@@ -70,6 +70,6 @@
 }
 
 .walletButton:hover {
-  background: var(--brand-orange);
+  background: #000;
   color: #fff;
 }

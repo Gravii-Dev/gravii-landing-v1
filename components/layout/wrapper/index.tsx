@@ -10,6 +10,7 @@ import type { LenisOptions } from 'lenis'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Lenis } from '@/components/layout/lenis'
+import { Marquee } from '@/components/layout/marquee'
 import { Theme } from '@/components/layout/theme'
 import type { ThemeName } from '@/styles/config'
 import { Canvas } from '@/webgl/components/canvas'
@@ -28,6 +29,8 @@ interface WrapperProps extends React.HTMLAttributes<HTMLDivElement> {
    * The GlobalCanvas must be mounted in your root layout for this to work.
    */
   webgl?: boolean
+  /** Enable scroll snapping to sections. Sections need data-lenis-snap-align attribute. */
+  snap?: boolean
 }
 
 /**
@@ -99,6 +102,7 @@ export function Wrapper({
   className,
   lenis = true,
   webgl = false,
+  snap = false,
   ...props
 }: WrapperProps) {
   return (
@@ -113,8 +117,15 @@ export function Wrapper({
           {children}
         </main>
       </Canvas>
+      <Marquee />
       <Footer />
-      {lenis && <Lenis root options={typeof lenis === 'object' ? lenis : {}} />}
+      {lenis && (
+        <Lenis
+          root
+          options={typeof lenis === 'object' ? lenis : {}}
+          snap={snap}
+        />
+      )}
     </Theme>
   )
 }

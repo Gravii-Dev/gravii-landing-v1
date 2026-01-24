@@ -84,7 +84,11 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section ref={containerRef} className={s.section}>
+    <section
+      ref={containerRef}
+      className={s.section}
+      data-lenis-snap-align="start"
+    >
       <h1 ref={textRef} className={s.title}>
         YOUR
         <br />

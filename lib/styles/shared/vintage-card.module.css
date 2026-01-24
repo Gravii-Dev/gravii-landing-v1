@@ -1,0 +1,255 @@
+/* Base vintage paper background */
+.vintagePaperBase {
+  background-color: #d4c4a8;
+  background-image: url("/bg/vintage-paper.png");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Border radius variants */
+.borderRadiusIrregular {
+  border-radius: 3px 5px 4px 6px / 5px 3px 6px 4px;
+}
+
+.borderRadiusMedium {
+  border-radius: 3px 4px 3px 5px / 4px 3px 5px 3px;
+}
+
+.borderRadiusSimple {
+  border-radius: 0.25rem;
+}
+
+/* Box shadow variants */
+.shadowComplex {
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.3),
+    3px 4px 0 0 rgba(0, 0, 0, 0.1),
+    5px 6px 0 -1px rgba(0, 0, 0, 0.05),
+    inset 0 0 50px rgba(139, 119, 101, 0.5),
+    inset 2px 2px 8px rgba(139, 119, 101, 0.3),
+    inset -2px -2px 8px rgba(139, 119, 101, 0.3);
+}
+
+.shadowMedium {
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    3px 4px 0 0 rgba(0, 0, 0, 0.1),
+    5px 6px 0 -1px rgba(0, 0, 0, 0.05),
+    inset 0 0 50px rgba(139, 119, 101, 0.4),
+    inset 2px 2px 8px rgba(139, 119, 101, 0.25),
+    inset -2px -2px 8px rgba(139, 119, 101, 0.25);
+}
+
+.shadowSimple {
+  box-shadow:
+    0 15px 35px -10px rgba(0, 0, 0, 0.25),
+    3px 3px 0 0 rgba(0, 0, 0, 0.1),
+    inset 0 0 30px rgba(139, 119, 101, 0.4);
+}
+
+.shadowCard {
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.3),
+    4px 4px 0 0 rgba(0, 0, 0, 0.15),
+    inset 0 0 30px rgba(139, 119, 101, 0.3);
+}
+
+/* Pseudo-element edge gradients */
+.edgeGradientComplex::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 119, 101, 0.3) 0%,
+      transparent 5%,
+      transparent 95%,
+      rgba(139, 119, 101, 0.35) 100%
+    ),
+    linear-gradient(
+      225deg,
+      rgba(139, 119, 101, 0.25) 0%,
+      transparent 5%,
+      transparent 95%,
+      rgba(139, 119, 101, 0.3) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(139, 119, 101, 0.2) 0%,
+      transparent 3%,
+      transparent 97%,
+      rgba(139, 119, 101, 0.2) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(139, 119, 101, 0.2) 0%,
+      transparent 3%,
+      transparent 97%,
+      rgba(139, 119, 101, 0.2) 100%
+    );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.edgeGradientMedium::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 119, 101, 0.25) 0%,
+      transparent 5%,
+      transparent 95%,
+      rgba(139, 119, 101, 0.3) 100%
+    ),
+    linear-gradient(
+      225deg,
+      rgba(139, 119, 101, 0.2) 0%,
+      transparent 5%,
+      transparent 95%,
+      rgba(139, 119, 101, 0.25) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(139, 119, 101, 0.15) 0%,
+      transparent 3%,
+      transparent 97%,
+      rgba(139, 119, 101, 0.15) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(139, 119, 101, 0.15) 0%,
+      transparent 3%,
+      transparent 97%,
+      rgba(139, 119, 101, 0.15) 100%
+    );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.edgeGradientSimple::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 119, 101, 0.25) 0%,
+      transparent 5%,
+      transparent 95%,
+      rgba(139, 119, 101, 0.3) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(139, 119, 101, 0.15) 0%,
+      transparent 3%,
+      transparent 97%,
+      rgba(139, 119, 101, 0.15) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(139, 119, 101, 0.15) 0%,
+      transparent 3%,
+      transparent 97%,
+      rgba(139, 119, 101, 0.15) 100%
+    );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.edgeGradientCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      rgba(139, 119, 101, 0.2) 0%,
+      transparent 3%,
+      transparent 97%,
+      rgba(139, 119, 101, 0.2) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(139, 119, 101, 0.2) 0%,
+      transparent 3%,
+      transparent 97%,
+      rgba(139, 119, 101, 0.2) 100%
+    );
+  pointer-events: none;
+}
+
+/* Border pseudo-element */
+.paperBorder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(139, 119, 101, 0.3);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 11;
+}
+
+.paperBorderZ2::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(139, 119, 101, 0.3);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Combined face styles for card components */
+.vintageFaceCard3d {
+  composes: vintagePaperBase borderRadiusIrregular shadowComplex edgeGradientComplex paperBorder;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.vintageFaceAction {
+  composes: vintagePaperBase borderRadiusMedium shadowSimple edgeGradientSimple;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  filter: url(#paper-edge-action);
+}
+
+.vintageFaceConnect {
+  composes: vintagePaperBase borderRadiusSimple shadowCard edgeGradientCard;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: none;
+  filter: url(#paper-edge);
+}
+
+.vintageFacePersona {
+  composes: vintagePaperBase borderRadiusSimple shadowCard edgeGradientCard;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: none;
+  filter: url(#paper-edge);
+}
+
+.vintageCardLabels {
+  composes: vintagePaperBase borderRadiusIrregular shadowMedium edgeGradientMedium paperBorderZ2;
+  position: relative;
+  transform: rotate(-1deg);
+  transition: transform 0.3s ease;
+}
