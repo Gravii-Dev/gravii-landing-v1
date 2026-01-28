@@ -6,7 +6,10 @@
 'use client'
 
 import cn from 'clsx'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import type { LenisOptions } from 'lenis'
+import { useEffect, useRef } from 'react'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Lenis } from '@/components/layout/lenis'
@@ -14,6 +17,10 @@ import { Marquee } from '@/components/layout/marquee'
 import { Theme } from '@/components/layout/theme'
 import type { ThemeName } from '@/styles/config'
 import { Canvas } from '@/webgl/components/canvas'
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 /**
  * Props for the Wrapper component.
@@ -105,6 +112,31 @@ export function Wrapper({
   snap = false,
   ...props
 }: WrapperProps) {
+  const footerSectionRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const footerSection = footerSectionRef.current
+    if (!footerSection) return
+
+    gsap.fromTo(
+      footerSection,
+      { opacity: 0, y: 150, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: footerSection,
+          start: 'top 85%',
+          end: 'top 15%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    )
+  }, [])
+
   return (
     <Theme theme={theme} global>
       <Header />
@@ -117,8 +149,10 @@ export function Wrapper({
           {children}
         </main>
       </Canvas>
-      <Marquee />
-      <Footer />
+      <div ref={footerSectionRef} style={{ opacity: 0 }}>
+        <Marquee />
+        <Footer />
+      </div>
       {lenis && (
         <Lenis
           root

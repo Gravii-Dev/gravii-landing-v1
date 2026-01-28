@@ -1,10 +1,44 @@
+'use client'
+
 import cn from 'clsx'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useEffect, useRef } from 'react'
 import { CardPersonaPreview } from '@/components/ui/card-persona-preview'
 import s from './id.module.css'
 
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
+
 export function IDSection() {
+  const sectionRef = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    gsap.fromTo(
+      section,
+      { opacity: 0, y: 150, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+          end: 'top 15%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    )
+  }, [])
+
   return (
-    <section className={s.section}>
+    <section ref={sectionRef} className={s.section}>
       <div className={s.container}>
         {/* Header */}
         <div className={s.header}>

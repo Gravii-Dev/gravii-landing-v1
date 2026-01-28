@@ -1,7 +1,14 @@
 'use client'
 
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useEffect, useRef } from 'react'
 import { ActionCard } from '@/components/ui/action-card'
 import s from './connect.module.css'
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 function WalletIcon() {
   return (
@@ -50,8 +57,33 @@ function MailIcon() {
 }
 
 export function ConnectSection() {
+  const sectionRef = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    gsap.fromTo(
+      section,
+      { opacity: 0, y: 150, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+          end: 'top 15%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    )
+  }, [])
+
   return (
-    <section id="connect" className={s.section}>
+    <section ref={sectionRef} id="connect" className={s.section}>
       <div className={s.container}>
         <div className={s.cards}>
           {/* Check Any Wallet */}

@@ -1,7 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useEffect, useRef, useState } from 'react'
 import s from './labels.module.css'
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 const LABELS_DATA = [
   {
@@ -78,9 +84,33 @@ const LABELS_DATA = [
 
 export function LabelsSection() {
   const [activeLabel, setActiveLabel] = useState(LABELS_DATA[1]!) // Default to SPENDING
+  const sectionRef = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    gsap.fromTo(
+      section,
+      { opacity: 0, y: 150, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+          end: 'top 15%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    )
+  }, [])
 
   return (
-    <section className={s.section}>
+    <section ref={sectionRef} className={s.section}>
       <div className={s.container}>
         {/* Header */}
         <div className={s.header}>

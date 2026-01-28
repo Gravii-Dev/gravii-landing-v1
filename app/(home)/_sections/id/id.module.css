@@ -2,7 +2,7 @@
   composes: section-base-start from "@/lib/styles/shared/sections.module.css";
   background-color: #fffff0;
   background-image: none;
-  z-index: 200;
+  opacity: 0;
 }
 
 .container {

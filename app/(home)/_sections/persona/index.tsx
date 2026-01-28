@@ -75,6 +75,25 @@ export function PersonaSection() {
     if (!track) return
     if (!section) return
 
+    // Fade in animation
+    gsap.fromTo(
+      section,
+      { opacity: 0, y: 150, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+          end: 'top 15%',
+          toggleActions: 'play none none reverse',
+        },
+      }
+    )
+
     const getScrollAmount = () => track.scrollWidth - window.innerWidth
 
     const animation = gsap.to(track, {
@@ -92,8 +111,8 @@ export function PersonaSection() {
 
     return () => {
       animation.kill()
-      for (const trigger of ScrollTrigger.getAll()) {
-        trigger.kill()
+      if (animation.scrollTrigger) {
+        animation.scrollTrigger.kill()
       }
     }
   }, [])
