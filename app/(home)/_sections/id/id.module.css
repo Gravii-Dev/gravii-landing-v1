@@ -1,7 +1,7 @@
 .section {
   composes: section-base-start from "@/lib/styles/shared/sections.module.css";
-  background-color: #8ab88a;
-  background-image: url("/bg/bright-green.png");
+  background-color: #fffff0;
+  background-image: none;
   z-index: 200;
 }
 

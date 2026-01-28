@@ -10,92 +10,152 @@ if (typeof window !== 'undefined') {
 }
 
 export function HeroSection() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const textRef = useRef<HTMLHeadingElement>(null)
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const titleWrapRef = useRef<HTMLDivElement | null>(null)
+  const toggleTrackRef = useRef<HTMLDivElement | null>(null)
+  const toggleFillRef = useRef<HTMLDivElement | null>(null)
+  const toggleKnobRef = useRef<HTMLDivElement | null>(null)
+  const shadeRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    const textElement = textRef.current
-    const logoElement = document.querySelector('#header-logo')
+    const section = sectionRef.current
+    const titleWrap = titleWrapRef.current
+    const shade = shadeRef.current
+    const toggleTrack = toggleTrackRef.current
+    const toggleFill = toggleFillRef.current
+    const toggleKnob = toggleKnobRef.current
 
-    if (!textElement) return
-    if (!containerRef.current) return
+    if (!section) return
+    if (!titleWrap) return
+    if (!shade) return
+    if (!toggleTrack) return
+    if (!toggleFill) return
+    if (!toggleKnob) return
 
-    // 초기화: GSAP으로 중앙 정렬 설정
-    gsap.set(textElement, {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      xPercent: -50,
-      yPercent: -50,
-      opacity: 1,
-      scale: 1,
+    const words = section.querySelectorAll('.hero-title-word')
+
+    const introTl = gsap.timeline({
+      defaults: { ease: 'power3.out' },
+      delay: 0.3,
     })
 
-    const targetTop = 32
-    const targetScale = 0.12
+    introTl.from(words, {
+      y: '120%',
+      duration: 1,
+      stagger: 0.1,
+    })
 
-    const tl = gsap.timeline({
+    introTl.from(
+      toggleTrack,
+      {
+        scale: 0,
+        duration: 0.8,
+        ease: 'back.out(1.7)',
+      },
+      '-=0.8'
+    )
+
+    const getMoveDistance = () => {
+      const titleWidth = titleWrap.scrollWidth
+      const viewportWidth = window.innerWidth
+      return Math.max(0, titleWidth - viewportWidth + 500)
+    }
+
+    const getKnobMoveDistance = () => {
+      const trackWidth = toggleTrack.getBoundingClientRect().width
+      const knobWidth = toggleKnob.getBoundingClientRect().width
+      const styles = window.getComputedStyle(toggleTrack)
+      const paddingLeft = Number.parseFloat(styles.paddingLeft) || 0
+      const paddingRight = Number.parseFloat(styles.paddingRight) || 0
+      return Math.max(0, trackWidth - knobWidth - (paddingLeft + paddingRight))
+    }
+
+    const scrollTl = gsap.timeline({
       scrollTrigger: {
-        trigger: containerRef.current,
+        trigger: section,
         start: 'top top',
-        end: '+=250%',
+        end: 'bottom bottom',
         scrub: 1,
-        pin: true,
+        invalidateOnRefresh: true,
+        preventOverlaps: true,
       },
     })
 
-    // 위로 올라가며 작아짐
-    tl.to(textElement, {
-      top: targetTop,
-      yPercent: 0,
-      scale: targetScale,
-      transformOrigin: 'center top',
-      ease: 'power2.inOut',
-      duration: 1,
-    })
-
-    // 충돌 애니메이션
-    if (logoElement) {
-      tl.to(logoElement, {
-        x: '42vw',
-        ease: 'power1.in',
-        duration: 0.15,
-      })
-
-      tl.to(
-        textElement,
-        {
-          x: '100vw',
-          opacity: 0,
-          rotation: 90,
-          duration: 0.2,
-          ease: 'power4.out',
-        },
-        '<+=0.1'
-      )
-    }
+    scrollTl.to(titleWrap, { x: () => -getMoveDistance(), ease: 'none' }, 0)
+    scrollTl.to(
+      shade,
+      { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', ease: 'none' },
+      0
+    )
+    scrollTl.to(
+      toggleKnob,
+      { x: () => getKnobMoveDistance(), ease: 'power2.out', duration: 0.25 },
+      0
+    )
+    scrollTl.to(
+      toggleFill,
+      { width: '100%', ease: 'power2.out', duration: 0.25 },
+      0
+    )
 
     return () => {
-      tl.kill()
-      for (const trigger of ScrollTrigger.getAll()) {
-        trigger.kill()
-      }
+      introTl.kill()
+      scrollTl.scrollTrigger?.kill()
+      scrollTl.kill()
     }
   }, [])
 
   return (
     <section
-      ref={containerRef}
+      ref={sectionRef}
       className={s.section}
       data-lenis-snap-align="start"
     >
-      <h1 ref={textRef} className={s.title}>
-        YOUR
-        <br />
-        PERSONAL
-        <br />
-        CONCIERGE
-      </h1>
+      <div className={s.sticky}>
+        <div className={s.container}>
+          <div className={s.titleOuter}>
+            <div ref={titleWrapRef} className={s.titleWrap}>
+              <div className={s.titleRow}>
+                <h1 className={`hero-title-word ${s.word} ${s.wordBlack}`}>
+                  YOUR
+                </h1>
+
+                <div
+                  ref={toggleTrackRef}
+                  className={`hero-toggle-track ${s.toggleTrack}`}
+                >
+                  <div
+                    ref={toggleFillRef}
+                    className={`hero-toggle-fill ${s.toggleFill}`}
+                  />
+                  <div
+                    ref={toggleKnobRef}
+                    className={`hero-toggle-knob ${s.toggleKnob}`}
+                  />
+                </div>
+
+                <h1 className={`hero-title-word ${s.word} ${s.wordGrey}`}>
+                  PERSONAL
+                </h1>
+                <h1 className={`hero-title-word ${s.word} ${s.wordGrey}`}>
+                  CONCIERGE
+                </h1>
+              </div>
+
+              <div ref={shadeRef} className={s.shade} aria-hidden="true">
+                <div className={s.titleRow}>
+                  <h1 className={`${s.word} ${s.wordBlack} ${s.wordGhost}`}>
+                    YOUR
+                  </h1>
+                  <div className={s.toggleGhost} />
+                  <h1 className={`${s.word} ${s.wordBlack}`}>PERSONAL</h1>
+                  <h1 className={`${s.word} ${s.wordBlack}`}>CONCIERGE</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }

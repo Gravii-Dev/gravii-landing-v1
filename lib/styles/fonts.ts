@@ -5,13 +5,7 @@ import localFont from 'next/font/local'
 // 폰트 변경 시 여기만 수정하면 됨!
 // ============================================
 const display = localFont({
-  src: [
-    { path: '../../public/fonts/GCBond-Light.ttf', weight: '300' },
-    { path: '../../public/fonts/GCBond-Regular.ttf', weight: '400' },
-    { path: '../../public/fonts/GCBond-Medium.ttf', weight: '500' },
-    { path: '../../public/fonts/GCBond-SemiBold.ttf', weight: '600' },
-    { path: '../../public/fonts/GCBond-Bold.ttf', weight: '700' },
-  ],
+  src: [{ path: '../../public/fonts/Grift-Black.woff2', weight: '900' }],
   display: 'swap',
   variable: '--font-display',
   preload: true,
@@ -22,11 +16,12 @@ const display = localFont({
 // Mono Fonts (코드용)
 // ============================================
 const mono = localFont({
-  src: '../../public/fonts/ServerMono/ServerMono-Regular.woff2',
+  src: '../../public/fonts/Grift-Black.woff2',
   display: 'swap',
-  variable: '--font-mono',
+  // Tailwind theme expects this Next.js variable name
+  variable: '--next-font-mono',
   preload: true,
-  fallback: ['ui-monospace', 'SFMono-Regular', 'Consolas', 'monospace'],
+  fallback: ['system-ui', 'sans-serif'],
 })
 
 // ============================================

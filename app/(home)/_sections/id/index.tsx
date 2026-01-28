@@ -4,7 +4,7 @@ import s from './id.module.css'
 
 export function IDSection() {
   return (
-    <section className={s.section} data-lenis-snap-align="start">
+    <section className={s.section}>
       <div className={s.container}>
         {/* Header */}
         <div className={s.header}>

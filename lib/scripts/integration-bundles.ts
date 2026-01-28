@@ -162,7 +162,7 @@ export const INTEGRATION_BUNDLES: Record<string, IntegrationBundle> = {
     ],
     codeTransforms: [
       {
-        file: 'lib/features/index.tsx',
+        file: 'components/layout/optional-features.tsx',
         patterns: [
           // Remove the LazyGlobalCanvas import
           {
@@ -173,7 +173,7 @@ export const INTEGRATION_BUNDLES: Record<string, IntegrationBundle> = {
           // Remove the hasWebGL constant
           {
             regex:
-              "const hasWebGL = Boolean\\(process\\.env\\.NEXT_PUBLIC_ENABLE_WEBGL !== 'false'\\)\\n",
+              "const hasWebGL = process\\.env\\.NEXT_PUBLIC_ENABLE_WEBGL === 'true'\\n",
             flags: 'gm',
           },
           // Remove the WebGL component push block (with surrounding newlines)

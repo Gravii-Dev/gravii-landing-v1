@@ -158,8 +158,8 @@ describe('WebGL Code Transforms', () => {
   const webglBundle = INTEGRATION_BUNDLES.webgl
   if (!webglBundle) throw new Error('WebGL bundle not found')
 
-  describe('lib/features/index.tsx transforms', () => {
-    const file = 'lib/features/index.tsx'
+  describe('components/layout/optional-features.tsx transforms', () => {
+    const file = 'components/layout/optional-features.tsx'
 
     it('should match LazyGlobalCanvas import', () => {
       const content = sourceFiles[file]
@@ -180,7 +180,7 @@ describe('WebGL Code Transforms', () => {
 
       const pattern = webglBundle.codeTransforms
         .find((t) => t.file === file)
-        ?.patterns.find((p) => p.regex.includes('hasWebGL = Boolean'))
+        ?.patterns.find((p) => p.regex.includes('hasWebGL = process'))
 
       expect(pattern).toBeTruthy()
       const regex = new RegExp(pattern!.regex, pattern!.flags)
@@ -403,7 +403,7 @@ describe('Combined Transforms (Multiple Integrations Removed)', () => {
     const filesToTransform = [
       'lib/dev/index.tsx',
       'lib/dev/cmdo.tsx',
-      'lib/features/index.tsx',
+      'components/layout/optional-features.tsx',
       'components/layout/wrapper/index.tsx',
     ]
 

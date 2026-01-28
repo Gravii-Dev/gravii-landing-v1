@@ -21,6 +21,8 @@
 html {
   --scrollbar-gutter: 0px;
   scrollbar-gutter: stable; /* This is needed to prevent the scrollbar from jumping */
+  background-color: #fffff0;
+  overscroll-behavior: none;
 
   &.lenis-stopped {
     --scrollbar-gutter: var(--scrollbar-width);
@@ -39,7 +41,7 @@ html.overflow-hidden {
 body {
   min-height: 100vh;
   overscroll-behavior: none;
-  background-color: var(--color-primary);
+  background-color: #fffff0;
   color: var(--color-secondary);
   display: flex;
   flex-direction: column;

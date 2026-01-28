@@ -100,7 +100,7 @@ export function Wrapper({
   children,
   theme = 'dark',
   className,
-  lenis = true,
+  lenis = false,
   webgl = false,
   snap = false,
   ...props

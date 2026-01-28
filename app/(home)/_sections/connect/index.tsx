@@ -51,7 +51,7 @@ function MailIcon() {
 
 export function ConnectSection() {
   return (
-    <section id="connect" className={s.section} data-lenis-snap-align="start">
+    <section id="connect" className={s.section}>
       <div className={s.container}>
         <div className={s.cards}>
           {/* Check Any Wallet */}

@@ -9,18 +9,8 @@ import { PersonaSection } from './(home)/_sections/persona'
 
 export default function Home() {
   return (
-    <SplashGate message="GRAVII" durationMs={1500} bgSrc="/bg/gray-wall.png">
-      <Wrapper theme="gravii" lenis={{}} snap>
-        {/* Hero/Persona 섹션 고정 배경 */}
-        <div
-          className="pointer-events-none fixed inset-0 -z-10"
-          style={{
-            backgroundImage: "url('/bg/gray-wall.png')",
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
+    <SplashGate message="GRAVII" durationMs={1500}>
+      <Wrapper theme="gravii">
         <main id="main-content">
           <HeroSection />
           <PersonaSection />

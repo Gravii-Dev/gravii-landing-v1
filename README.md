@@ -154,7 +154,6 @@ gravii-lp/
 │   │   │   ├── id/               # GRAVII ID profile
 │   │   │   └── labels/           # Behavioral labels
 │   │   └── page.tsx              # Main entry
-│   ├── (examples)/               # Demo/example pages
 │   └── layout.tsx                # Root layout
 │
 ├── components/
