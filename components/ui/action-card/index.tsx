@@ -13,6 +13,11 @@ interface ActionCardProps {
   onAction?: () => void
   children?: ReactNode
   className?: string
+  /**
+   * Override the internal card height.
+   * Useful when this card needs to visually match other card types in a track.
+   */
+  cardHeight?: number
 }
 
 export function ActionCard({
@@ -23,11 +28,15 @@ export function ActionCard({
   onAction,
   children,
   className,
+  cardHeight,
 }: ActionCardProps) {
   return (
     <div className={cn(s.wrapper, s.wrapperFloat, className)}>
       <PaperEdgeFilter id="paper-edge-action" scale={2} />
-      <div className={s.card}>
+      <div
+        className={s.card}
+        style={cardHeight ? { height: `${cardHeight}px` } : undefined}
+      >
         <div className={s.face}>
           {/* Chrome Header */}
           <header className={s.chrome}>

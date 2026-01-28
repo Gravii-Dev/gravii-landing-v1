@@ -61,6 +61,7 @@ export function useWebGLElement<T extends HTMLElement = HTMLElement>({
   const [setRectRef, rect] = useRect()
   const elementRef = useRef<T | null>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
+  const mountedRef = useRef(false)
 
   // Combined ref callback that handles both rect tracking and visibility observation
   const setRef = (element: T | null) => {
@@ -78,6 +79,7 @@ export function useWebGLElement<T extends HTMLElement = HTMLElement>({
     if (element) {
       observerRef.current = new IntersectionObserver(
         ([entry]) => {
+          if (!mountedRef.current) return
           if (entry) setIsVisible(entry.isIntersecting)
         },
         { rootMargin, threshold: threshold ?? 0 }
@@ -88,7 +90,9 @@ export function useWebGLElement<T extends HTMLElement = HTMLElement>({
 
   // Cleanup on unmount
   useEffect(() => {
+    mountedRef.current = true
     return () => {
+      mountedRef.current = false
       observerRef.current?.disconnect()
     }
   }, [])
@@ -102,6 +106,7 @@ export function useWebGLElement<T extends HTMLElement = HTMLElement>({
     observerRef.current?.disconnect()
     observerRef.current = new IntersectionObserver(
       ([entry]) => {
+        if (!mountedRef.current) return
         if (entry) setIsVisible(entry.isIntersecting)
       },
       { rootMargin, threshold: threshold ?? 0 }

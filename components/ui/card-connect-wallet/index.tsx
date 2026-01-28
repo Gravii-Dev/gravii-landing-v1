@@ -7,11 +7,17 @@ import s from './card-connect-wallet.module.css'
 interface CardConnectWalletProps {
   className?: string
   onConnect?: () => void
+  /**
+   * Override the internal card height.
+   * Useful when this card needs to visually match other card types in a track.
+   */
+  cardHeight?: number
 }
 
 export function CardConnectWallet({
   className,
   onConnect,
+  cardHeight,
 }: CardConnectWalletProps) {
   const handleClick = () => {
     if (onConnect) {
@@ -31,6 +37,7 @@ export function CardConnectWallet({
       <button
         type="button"
         className={cn(s.card, s.cardFloat)}
+        style={cardHeight ? { height: `${cardHeight}px` } : undefined}
         onClick={handleClick}
       >
         <div className={s.face}>

@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e8e4df;
+  background-color: #000;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -31,7 +31,7 @@
 .message {
   font-size: 16vw;
   font-weight: 900;
-  color: #1a1a1a;
+  color: #fffff0;
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-align: center;

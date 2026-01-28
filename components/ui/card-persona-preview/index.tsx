@@ -6,13 +6,24 @@ import s from './card-persona-preview.module.css'
 
 interface CardPersonaPreviewProps {
   className?: string
+  /**
+   * Override the internal card height.
+   * Useful when this card needs to visually match other card types.
+   */
+  cardHeight?: number
 }
 
-export function CardPersonaPreview({ className }: CardPersonaPreviewProps) {
+export function CardPersonaPreview({
+  className,
+  cardHeight,
+}: CardPersonaPreviewProps) {
   return (
     <div className={cn(s.wrapper, className)}>
       <PaperEdgeFilter id="paper-edge" scale={3} />
-      <div className={cn(s.card, s.cardFloat)}>
+      <div
+        className={cn(s.card, s.cardFloat)}
+        style={cardHeight ? { height: `${cardHeight}px` } : undefined}
+      >
         <div className={s.face}>
           {/* Chrome Header */}
           <header className={s.chrome}>

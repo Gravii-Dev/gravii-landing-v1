@@ -22,6 +22,26 @@
   flex-shrink: 0;
 }
 
+.cardFrame {
+  width: clamp(300px, 42vw, 580px);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* In PersonaSection we want these reused cards to use the same width */
+.cardPersonaPreview {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.cardConnectWallet {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
 @media (min-width: 800px) {
   .track {
     gap: 2.5rem;
@@ -29,6 +49,10 @@
   }
 
   .card {
+    width: clamp(360px, 32vw, 640px);
+  }
+
+  .cardFrame {
     width: clamp(360px, 32vw, 640px);
   }
 }

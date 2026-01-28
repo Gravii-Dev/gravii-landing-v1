@@ -10,7 +10,7 @@ import { PersonaSection } from './(home)/_sections/persona'
 export default function Home() {
   return (
     <SplashGate message="GRAVII" durationMs={1500}>
-      <Wrapper theme="gravii">
+      <Wrapper theme="gravii" webgl>
         <main id="main-content">
           <HeroSection />
           <PersonaSection />

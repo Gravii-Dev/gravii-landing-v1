@@ -66,9 +66,9 @@
 }
 
 .contentFrame {
-  border: 1px solid #111;
+  border: 1px solid rgba(17, 17, 17, 0.2);
   padding: 0.55rem;
-  background: #e9e9e9;
+  background: rgba(233, 233, 233, 0.3);
   flex: 1;
 }
 
@@ -77,8 +77,8 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  border: 1px solid #111;
-  background: #d9d9d9;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  background: rgba(217, 217, 217, 0.2);
 }
 
 /* Header */
