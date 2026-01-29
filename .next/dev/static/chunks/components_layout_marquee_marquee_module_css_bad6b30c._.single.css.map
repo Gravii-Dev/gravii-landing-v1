@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/components/layout/marquee/marquee.module.css"],"sourcesContent":[".marquee {\n  position: relative;\n  overflow: hidden;\n  background-color: #fffff0;\n  background-image: none;\n  padding: 2rem 0;\n}\n\n.track {\n  display: flex;\n  width: -moz-fit-content;\n  width: fit-content;\n}\n\n.content {\n  display: flex;\n  flex-shrink: 0;\n  animation: scroll 35s linear infinite;\n}\n\n.text {\n  font-family: var(--font-display, system-ui), system-ui, sans-serif;\n  font-size: 8vw;\n  font-weight: 700;\n  letter-spacing: 0.05em;\n  color: #000000;\n  text-transform: uppercase;\n  flex-shrink: 0;\n  white-space: nowrap;\n}\n\n@keyframes scroll {\n  0% {\n    transform: translateX(0);\n  }\n  100% {\n    transform: translateX(-100%);\n  }\n}\n"],"names":[],"mappings":"AAAA;;;;;;;;AAQA;;;;;AAMA;;;;;;AAMA;;;;;;;;;;;AAWA"}}]
+}

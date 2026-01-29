@@ -18,7 +18,7 @@
 }
 
 .text {
-  font-family: var(--font-display), system-ui, sans-serif;
+  font-family: var(--font-display, system-ui), system-ui, sans-serif;
   font-size: 8vw;
   font-weight: 700;
   letter-spacing: 0.05em;

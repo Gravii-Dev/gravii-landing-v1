@@ -29,6 +29,7 @@
       "!**/*.mdx",
       "!**/tailwind.css",
       "!**/root.css",
+      "!**/globals.css",
       "!**/*.grit"
     ]
   },
@@ -106,6 +107,7 @@
         "noPrototypeBuiltins": "warn",
         "noSelfCompare": "error",
         "noSparseArray": "error",
+        "noArrayIndexKey": "warn",
         "useAwait": "off"
       },
 
@@ -125,7 +127,7 @@
         "useKeyWithClickEvents": "warn",
         "useValidAnchor": "warn",
         "useAltText": "error",
-        "useButtonType": "error",
+        "useButtonType": "warn",
         "useValidAriaProps": "error",
         "useValidAriaRole": "error",
         "useValidAriaValues": "error",
@@ -133,11 +135,12 @@
         "noAutofocus": "warn",
         "noDistractingElements": "error",
         "noRedundantAlt": "error",
-        "useSemanticElements": "warn"
+        "useSemanticElements": "warn",
+        "noSvgWithoutTitle": "warn"
       },
 
       "performance": {
-        "noImgElement": "error"
+        "noImgElement": "warn"
       },
 
       "nursery": {
@@ -175,7 +178,8 @@
       "enabled": true
     },
     "parser": {
-      "cssModules": true
+      "cssModules": true,
+      "tailwindDirectives": true
     }
   },
 

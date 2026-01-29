@@ -1,0 +1,99 @@
+/* [project]/components/layout/footer/footer.module.css [app-client] (css) */
+.footer-module__HkcrGa__footer {
+  background-color: #000;
+  background-image: none;
+  padding: 4rem 0;
+  position: relative;
+}
+
+.footer-module__HkcrGa__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer-module__HkcrGa__content {
+  flex-direction: column;
+  gap: 3rem;
+  display: flex;
+}
+
+@media (min-width: 800px) {
+  .footer-module__HkcrGa__content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.footer-module__HkcrGa__brand {
+  flex-direction: column;
+  gap: .25rem;
+  display: flex;
+}
+
+.footer-module__HkcrGa__issue {
+  font-family: var(--font-display, system-ui), system-ui, sans-serif;
+  letter-spacing: .1em;
+  color: ivory;
+  margin-bottom: .5rem;
+  font-size: .75rem;
+  font-weight: 500;
+}
+
+.footer-module__HkcrGa__logo {
+  font-family: var(--font-display, system-ui), system-ui, sans-serif;
+  color: ivory;
+  letter-spacing: -.02em;
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.footer-module__HkcrGa__tagline {
+  font-family: var(--font-display, system-ui), system-ui, sans-serif;
+  color: ivory;
+  margin: .5rem 0 0;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.footer-module__HkcrGa__tagline strong {
+  font-weight: 700;
+}
+
+.footer-module__HkcrGa__links {
+  align-items: center;
+  gap: 2rem;
+  display: flex;
+}
+
+.footer-module__HkcrGa__link {
+  color: ivory;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity .2s;
+  display: flex;
+}
+
+.footer-module__HkcrGa__link:hover {
+  opacity: .6;
+}
+
+.footer-module__HkcrGa__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.footer-module__HkcrGa__linkDisabled {
+  color: ivory;
+  opacity: .35;
+  cursor: not-allowed;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+/*# sourceMappingURL=components_layout_footer_footer_module_css_bad6b30c._.single.css.map*/

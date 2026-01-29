@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* Configure Tailwind to scan these files */
+@source "../**/*.{js,ts,jsx,tsx}";
+@source "../../app/**/*.{js,ts,jsx,tsx}";
+
+/* Tailwind v4 theme customization */
+@theme {
+  --font-gambarino: "Gambarino", "DM Serif Display", serif;
+
+  --color-acid-300: #bef264;
+  --color-acid-400: #a3e635;
+  --color-acid-500: #84cc16;
+  --color-acid-900: #365314;
+
+  --radius-2xl: 2rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Layout components (Header, Footer, Marquee) use this */
+:root {
+  --font-display: "Gambarino", "DM Serif Display", serif;
+}
+
+/* Global styles */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
+
+body {
+  @apply bg-black text-white font-gambarino;
+  overflow-x: hidden;
+}

@@ -50,7 +50,6 @@ export function Header() {
     <header ref={headerRef} className={s.header}>
       <nav className={s.nav}>
         <div className={s.container}>
-          {/* Logo */}
           <button
             id="header-logo"
             onClick={scrollToTop}
@@ -59,8 +58,6 @@ export function Header() {
           >
             Gravii
           </button>
-
-          {/* Connect Wallet Button */}
           <div className={s.actions}>
             <button className={s.walletButton} type="button">
               Connect Wallet

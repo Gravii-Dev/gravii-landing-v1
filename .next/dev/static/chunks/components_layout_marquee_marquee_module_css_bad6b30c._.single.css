@@ -1,0 +1,42 @@
+/* [project]/components/layout/marquee/marquee.module.css [app-client] (css) */
+.marquee-module__vjfF6a__marquee {
+  background-color: ivory;
+  background-image: none;
+  padding: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee-module__vjfF6a__track {
+  width: fit-content;
+  display: flex;
+}
+
+.marquee-module__vjfF6a__content {
+  flex-shrink: 0;
+  animation: 35s linear infinite marquee-module__vjfF6a__scroll;
+  display: flex;
+}
+
+.marquee-module__vjfF6a__text {
+  font-family: var(--font-display, system-ui), system-ui, sans-serif;
+  letter-spacing: .05em;
+  color: #000;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 8vw;
+  font-weight: 700;
+}
+
+@keyframes marquee-module__vjfF6a__scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/*# sourceMappingURL=components_layout_marquee_marquee_module_css_bad6b30c._.single.css.map*/

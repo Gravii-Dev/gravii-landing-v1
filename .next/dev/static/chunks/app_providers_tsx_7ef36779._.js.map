@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///Users/kxwxn/Gravii/Gravii-Lp-1/app/providers.tsx"],"sourcesContent":["'use client'\n\nimport { QueryClient, QueryClientProvider } from '@tanstack/react-query'\nimport dynamic from 'next/dynamic'\n\nconst queryClient = new QueryClient()\n\n// Dynamically import Web3Provider to avoid SSR issues\nconst Web3Provider = dynamic(\n  () => import('./web3-provider').then((mod) => mod.Web3Provider),\n  { ssr: false }\n)\n\nexport function Providers({ children }: { children: React.ReactNode }) {\n  return (\n    <QueryClientProvider client={queryClient}>\n      <Web3Provider>{children}</Web3Provider>\n    </QueryClientProvider>\n  )\n}\n"],"names":[],"mappings":";;;;;AAEA;AAAA;AACA;;AAHA;;;;AAKA,MAAM,cAAc,IAAI,+LAAW;AAEnC,sDAAsD;AACtD,MAAM,eAAe,IAAA,6KAAO,EAC1B,IAAM,uHAA0B,IAAI,CAAC,CAAC,MAAQ,IAAI,YAAY;;;;;;IAC5D,KAAK;;KAFH;AAKC,SAAS,UAAU,EAAE,QAAQ,EAAiC;IACnE,qBACE,6LAAC,gNAAmB;QAAC,QAAQ;kBAC3B,cAAA,6LAAC;sBAAc;;;;;;;;;;;AAGrB;MANgB"}}]
+}

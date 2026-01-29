@@ -51,7 +51,6 @@ export function Footer() {
     <footer className={s.footer}>
       <div className={s.container}>
         <div className={s.content}>
-          {/* Left - Brand */}
           <div className={s.brand}>
             <span className={s.issue}>ISSUE 001</span>
             <h2 className={s.logo}>GRAVII</h2>
@@ -59,8 +58,6 @@ export function Footer() {
               Your wallet. Your identity. <strong>Decoded.</strong>
             </p>
           </div>
-
-          {/* Right - Links */}
           <div className={s.links}>
             <Link
               href="https://twitter.com"

@@ -1,0 +1,78 @@
+/* [project]/components/layout/header/header.module.css [app-client] (css) */
+.header-module__yB2-wa__header {
+  z-index: 50;
+  background: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.header-module__yB2-wa__nav {
+  padding: 1rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .header-module__yB2-wa__nav {
+    padding: 1rem 1.5rem;
+  }
+}
+
+.header-module__yB2-wa__container {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.header-module__yB2-wa__logo {
+  font-family: var(--font-display, system-ui), system-ui, sans-serif;
+  color: #000;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: opacity .2s;
+}
+
+@media (min-width: 640px) {
+  .header-module__yB2-wa__logo {
+    font-size: 1.875rem;
+  }
+}
+
+.header-module__yB2-wa__logo:hover {
+  opacity: .7;
+}
+
+.header-module__yB2-wa__actions {
+  align-items: center;
+  gap: 1.5rem;
+  display: flex;
+}
+
+.header-module__yB2-wa__walletButton {
+  font-family: var(--font-display, system-ui), system-ui, sans-serif;
+  color: #000;
+  cursor: pointer;
+  background: none;
+  border: 2px solid #000;
+  border-radius: 9999px;
+  padding: .5rem 1.5rem;
+  font-size: .875rem;
+  font-weight: 700;
+  transition: all .3s;
+}
+
+@media (min-width: 640px) {
+  .header-module__yB2-wa__walletButton {
+    font-size: 1rem;
+  }
+}
+
+.header-module__yB2-wa__walletButton:hover {
+  color: #fff;
+  background: #000;
+}
+
+/*# sourceMappingURL=components_layout_header_header_module_css_bad6b30c._.single.css.map*/

@@ -22,11 +22,9 @@ export function Marquee() {
   return (
     <div className={s.marquee}>
       <div className={s.track}>
-        {/* First set */}
         <div className={s.content}>
           <MarqueeContent />
         </div>
-        {/* Duplicate for seamless loop */}
         <div className={s.content}>
           <MarqueeContent />
         </div>

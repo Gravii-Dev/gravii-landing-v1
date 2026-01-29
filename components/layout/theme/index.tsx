@@ -10,8 +10,8 @@ export const ThemeContext = createContext<{
   theme: Themes[ThemeName]
   setThemeName: (theme: ThemeName) => void
 }>({
-  name: 'light',
-  theme: themes.light,
+  name: 'dark',
+  theme: themes.dark,
   setThemeName: () => {
     void 0
   },
@@ -31,14 +31,13 @@ export function Theme({
   global?: boolean
 }) {
   const pathname = usePathname()
-
   const [currentTheme, setCurrentTheme] = useState(theme)
 
   useEffect(() => {
     setCurrentTheme(theme)
   }, [theme])
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: we need to trigger on path change
+  // biome-ignore lint/correctness/useExhaustiveDependencies: re-apply theme on route change
   useEffect(() => {
     if (global) {
       document.documentElement.setAttribute('data-theme', currentTheme)
@@ -48,9 +47,13 @@ export function Theme({
   return (
     <>
       {global && (
-        <script>
-          {`document.documentElement.setAttribute('data-theme', '${currentTheme}');`}
-        </script>
+        <script
+          suppressHydrationWarning
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: theme script for data-theme before paint
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.setAttribute('data-theme', '${currentTheme}');`,
+          }}
+        />
       )}
       <ThemeContext.Provider
         value={{
