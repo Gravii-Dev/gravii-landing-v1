@@ -11,6 +11,7 @@ A Next.js landing page for **Gravii** — behavioral analytics for Web3. Feature
 - **Reown AppKit** (WalletConnect) + **Wagmi** + **Viem**
 - **Zustand** (global state)
 - **GSAP** (header/footer animations)
+- **Storybook 8** (component development & docs)
 - **Biome** (lint & format)
 
 ## Prerequisites
@@ -50,6 +51,8 @@ Open [http://localhost:3000](http://localhost:3000) (or the port shown in the te
 | `bun run build` | Production build |
 | `bun start` | Run production server |
 | `bun run lint` | Next.js lint |
+| `bun run storybook` | Start Storybook (port 6006) |
+| `bun run build-storybook` | Build static Storybook |
 | `bunx biome check . --write` | Biome lint + format |
 
 ## Project Structure
@@ -86,6 +89,13 @@ Open [http://localhost:3000](http://localhost:3000) (or the port shown in the te
 - **Labels section**: 5 behavioral labels (SYBIL, SPENDING, RISK, YIELD, CHURN) and Spending Analytics.
 - **Layout**: Fixed header (GSAP scroll-hide), marquee strip, footer with GSAP scroll-in.
 - **Web3**: Connect wallet via Reown AppKit; connected state shows Gravii ID and invite code.
+
+## Storybook
+
+Component stories live under `src/**/*.stories.tsx` and `components/**/*.stories.tsx`. The project uses **Storybook 8** with `@storybook/react-webpack5` (Next.js 16 does not support `@storybook/nextjs` preset yet). Global styles (`src/styles/globals.css`) and path alias `@/` are configured in `.storybook/`.
+
+- Run: `bun run storybook` → [http://localhost:6006](http://localhost:6006)
+- Build: `bun run build-storybook` (output: `storybook-static/`)
 
 ## Code Quality
 
