@@ -18,6 +18,8 @@ export const Button: React.FC<ButtonProps> = ({
     text-white/90 font-gambarino text-xl font-bold
     hover:bg-acid-400/10 hover:border-acid-400/50 hover:text-acid-300 hover:scale-[1.02]
     active:scale-95 transition-all duration-300
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-acid-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black
+    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
     flex items-center justify-center gap-2
   `
 

@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Next.js
+.next/
+out/
+
+# Testing
+playwright-report/
+test-results/
+
 # Environment variables
 .env.local
 .env.*.local

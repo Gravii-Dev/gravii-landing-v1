@@ -1,4 +1,4 @@
-import { Link } from '@/components/ui/link'
+import { Link } from '@/src/components/ui/link'
 import s from './footer.module.css'
 
 function TwitterIcon() {
@@ -53,7 +53,7 @@ export function Footer() {
         <div className={s.content}>
           <div className={s.brand}>
             <span className={s.issue}>ISSUE 001</span>
-            <h2 className={s.logo}>GRAVII</h2>
+            <h2 className={s.logo}>Gravii</h2>
             <p className={s.tagline}>
               Your wallet. Your identity. <strong>Decoded.</strong>
             </p>

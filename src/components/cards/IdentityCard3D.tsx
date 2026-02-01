@@ -1,10 +1,10 @@
 'use client'
 
 import type React from 'react'
+import { Image } from '@/src/components/ui/image'
+import { PRO_TRADER_PERSONA } from '@/src/config/personas'
 import { useUIStore } from '@/src/store'
-
-const PRO_TRADER_IMAGE =
-  'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop'
+import { DARK_BLUR_PLACEHOLDER } from '@/src/utils/image-placeholders'
 
 export const IdentityCard3D: React.FC = () => {
   const isCardFlipped = useUIStore((state) => state.isCardFlipped)
@@ -19,22 +19,27 @@ export const IdentityCard3D: React.FC = () => {
     >
       {/* FRONT: Pro Trader Image */}
       <div className="backface-hidden absolute inset-0 h-full w-full overflow-hidden rounded-[2rem] border border-acid-400/20 bg-[#0a0a0a]">
-        {/* biome-ignore lint/performance/noImgElement: external URL, card cover */}
-        <img
-          src={PRO_TRADER_IMAGE}
-          alt="Pro Trader"
-          className="h-full w-full object-cover opacity-80 contrast-125 filter"
+        <Image
+          src={PRO_TRADER_PERSONA.image}
+          alt={PRO_TRADER_PERSONA.title}
+          fill
+          sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 33vw"
+          quality={85}
+          priority
+          placeholder="blur"
+          blurDataURL={DARK_BLUR_PLACEHOLDER}
+          className="object-cover opacity-80 contrast-125 filter"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-acid-900/80 via-transparent to-transparent opacity-60" />
 
         {/* Overlay Text */}
         <div className="absolute right-8 bottom-8 left-8 z-20">
           <h2 className="mb-2 font-gambarino text-5xl text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-            PRO TRADER
+            {PRO_TRADER_PERSONA.title}
           </h2>
           <div className="flex items-center justify-between">
             <span className="rounded border border-acid-400/50 bg-black/50 px-3 py-1 font-gambarino text-acid-400 text-sm tracking-[0.2em] backdrop-blur">
-              GEN 1.0
+              {PRO_TRADER_PERSONA.badge}
             </span>
             <span className="animate-pulse font-gambarino text-white/80 text-xs tracking-widest">
               [ CLICK TO REVEAL ]

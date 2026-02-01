@@ -50,10 +50,16 @@ Open [http://localhost:3000](http://localhost:3000) (or the port shown in the te
 | `bun dev` | Start dev server (Turbopack) |
 | `bun run build` | Production build |
 | `bun start` | Run production server |
-| `bun run lint` | Next.js lint |
+| `bun run lint` | Biome lint + format check |
+| `bun run lint:next` | ESLint (Next/core-web-vitals) |
+| `bun run lint:all` | Biome + ESLint |
+| `bun run test` | Run tests (Vitest watch) |
+| `bun run test:run` | Run tests once (CI) |
+| `bun run test:e2e` | Playwright E2E (starts dev if needed) |
+| `bun run test:e2e:ui` | Playwright E2E with UI |
 | `bun run storybook` | Start Storybook (port 6006) |
 | `bun run build-storybook` | Build static Storybook |
-| `bunx biome check . --write` | Biome lint + format |
+| `bunx biome check . --write` | Biome lint + format (fix) |
 
 ## Project Structure
 
@@ -63,24 +69,31 @@ Open [http://localhost:3000](http://localhost:3000) (or the port shown in the te
 │   ├── page.tsx            # Home (Spline, Bento, Labels sections)
 │   ├── providers.tsx       # React Query, Web3 providers
 │   └── web3-provider.tsx   # Reown AppKit + Wagmi setup
-├── components/
-│   ├── layout/
-│   │   ├── header/         # Fixed header (GSAP scroll-hide)
-│   │   ├── footer/         # Footer (GSAP scroll-in)
-│   │   ├── marquee/        # Marquee strip
-│   │   ├── theme/          # Theme provider
-│   │   └── wrapper/        # Page wrapper (Header + Marquee + Footer)
-│   └── ui/                 # Link, ScrollReveal
 ├── src/
-│   ├── components/
+│   ├── components/         # 레이아웃·UI·페이지 컴포넌트 (@/src/components)
 │   │   ├── bento/          # BentoGrid, ConnectWalletCard, LabelsSection, etc.
 │   │   ├── cards/          # IdentityCard3D, PersonaCarousel, SpendingAnalytics
-│   │   └── layout/         # SplineScene
+│   │   ├── layout/         # Header, Footer, Marquee, Theme, Wrapper, SplineScene
+│   │   └── ui/             # Link, Image, Button, Input, ScrollReveal
 │   ├── config/             # Web3 & app constants
 │   ├── store/              # Zustand (walletStore, uiStore)
-│   └── styles/             # globals.css, design-tokens
+│   ├── styles/             # globals.css, design-tokens
+│   └── utils/              # validators, image-placeholders
+├── test/                   # Vitest setup (test/setup.ts)
 └── styles/                 # Theme (colors, config) for layout components
 ```
+
+**컴포넌트 위치**: 모든 컴포넌트는 `src/components/`에 통합. import 시 `@/src/components/...` 사용.
+
+## E2E (Playwright)
+
+E2E 테스트는 `e2e/` 디렉터리에 있으며, `bun run test:e2e`로 실행합니다. 최초 실행 전 브라우저 설치가 필요합니다:
+
+```bash
+bunx playwright install
+```
+
+이미 `bun dev`가 실행 중이면 기존 서버를 재사용합니다.
 
 ## Features
 
@@ -96,6 +109,13 @@ Component stories live under `src/**/*.stories.tsx` and `components/**/*.stories
 
 - Run: `bun run storybook` → [http://localhost:6006](http://localhost:6006)
 - Build: `bun run build-storybook` (output: `storybook-static/`)
+
+## Testing
+
+- **Vitest** + **React Testing Library** for unit and component tests.
+- Setup: `test/setup.ts` (jest-dom), `vitest.config.ts` (path alias `@/`).
+- Run: `bun run test` (watch), `bun run test:run` (single run, CI).
+- Tests: `**/*.test.{ts,tsx}`, `**/*.spec.{ts,tsx}` (e.g. `src/components/ui/Button.test.tsx`, `src/utils/validators.test.ts`).
 
 ## Code Quality
 

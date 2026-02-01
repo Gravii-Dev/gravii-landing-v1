@@ -28,30 +28,37 @@ export function ScrollReveal({
     const element = el.current
     if (!element) return
 
-    gsap.fromTo(
-      element,
-      { opacity: 0, y: 150, scale: 0.95 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1.2,
-        delay: delay,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: element,
-          start: 'top 85%',
-          end: 'top 15%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    )
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        element,
+        { opacity: 0, y: 150, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          delay: delay,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 85%',
+            end: 'top 15%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+    })
+
+    return () => {
+      ctx.revert() // Cleanup all GSAP animations and ScrollTriggers
+    }
   }, [delay])
 
   return (
     <Component
       ref={el}
-      className={cn('opacity-0 will-change-transform', className)}
+      className={cn('opacity-0', className)}
+      style={{ willChange: 'opacity, transform' }}
     >
       {children}
     </Component>

@@ -30,7 +30,8 @@
       "!**/tailwind.css",
       "!**/root.css",
       "!**/globals.css",
-      "!**/*.grit"
+      "!**/*.grit",
+      "!next-env.d.ts"
     ]
   },
 
@@ -205,6 +206,9 @@
             "useValidAnchor": "error",
             "useKeyWithClickEvents": "error",
             "useKeyWithMouseEvents": "error"
+          },
+          "style": {
+            "useFilenamingConvention": "off"
           }
         }
       }

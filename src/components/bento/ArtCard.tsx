@@ -2,29 +2,11 @@
 
 import type React from 'react'
 import { useEffect } from 'react'
+import { Image } from '@/src/components/ui/image'
+import { ART_PIECES } from '@/src/config/constants'
 import { useUIStore } from '@/src/store'
 import { DESIGN_TOKENS } from '@/src/styles/design-tokens'
-
-const ART_PIECES = [
-  {
-    id: 1,
-    title: 'SYNAPTIC_FLOW',
-    author: 'Unknown',
-    url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop',
-  },
-  {
-    id: 2,
-    title: 'DIGITAL_SOUL',
-    author: 'A.I.',
-    url: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=1000&auto=format&fit=crop',
-  },
-  {
-    id: 3,
-    title: 'VOID_NETWORK',
-    author: 'System',
-    url: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=1000&auto=format&fit=crop',
-  },
-]
+import { DARK_BLUR_PLACEHOLDER } from '@/src/utils/image-placeholders'
 
 export const ArtCard: React.FC = () => {
   const currentArtIndex = useUIStore((state) => state.currentArtIndex)
@@ -50,11 +32,15 @@ export const ArtCard: React.FC = () => {
               }`}
             >
               <div className="absolute inset-0 z-10 bg-black/20" />
-              {/* biome-ignore lint/performance/noImgElement: external URL, dynamic art slideshow */}
-              <img
+              <Image
                 src={art.url}
                 alt={art.title}
-                className="h-full w-full object-cover opacity-80 contrast-125 grayscale filter transition-transform duration-[20s] group-hover:scale-105"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                quality={85}
+                placeholder="blur"
+                blurDataURL={DARK_BLUR_PLACEHOLDER}
+                className="object-cover opacity-80 contrast-125 grayscale filter transition-transform duration-[20s] group-hover:scale-105"
               />
 
               <div className="absolute bottom-0 left-0 z-20 w-full p-8">

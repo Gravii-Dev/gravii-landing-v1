@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Link } from '@/src/components/ui/link'
 import { Providers } from './providers'
 import '../src/styles/globals.css'
 
@@ -19,8 +20,22 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap"
         />
+        {/* Preload critical 3D scene data */}
+        <link
+          rel="preload"
+          href="/spline-scene-data.json"
+          as="fetch"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="bg-black font-gambarino text-white">
+        {/* Skip to main content link for keyboard users */}
+        <Link
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-acid-400 focus:px-4 focus:py-2 focus:font-gambarino focus:text-black focus:shadow-lg"
+        >
+          Skip to main content
+        </Link>
         <Providers>{children}</Providers>
       </body>
     </html>

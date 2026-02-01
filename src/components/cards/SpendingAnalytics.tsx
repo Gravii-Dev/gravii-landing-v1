@@ -6,11 +6,14 @@ export const SpendingAnalytics: React.FC = () => {
     <>
       <div className={DESIGN_TOKENS.card.subtleGlow} />
       <div className="relative z-10 flex h-full flex-col">
-        <div className="mb-10 border-white/5 border-b pb-4">
-          <h3 className="font-gambarino text-2xl text-white/80 uppercase tracking-widest">
+        <header className="mb-10 border-white/5 border-b pb-4">
+          <h3
+            id="spending-analytics-heading"
+            className="font-gambarino text-white/80 text-xl uppercase tracking-widest sm:text-2xl"
+          >
             Spending Analytics
           </h3>
-        </div>
+        </header>
 
         {/* Icon & Title */}
         <div className="mb-8">

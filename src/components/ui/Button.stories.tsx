@@ -24,7 +24,7 @@ type Story = StoryObj<typeof meta>
 export const Primary: Story = {
   args: {
     children: 'Link Wallet',
-    variant: 'primary',
+    variant: 'secondary',
   },
 }
 
@@ -49,6 +49,7 @@ export const WithIcon: Story = {
         strokeWidth="2"
         aria-hidden
       >
+        <title>Plus icon</title>
         <path d="M12 5v14M5 12h14" />
       </svg>
     ),

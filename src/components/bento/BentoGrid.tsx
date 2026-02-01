@@ -22,31 +22,31 @@ export const BentoGrid: React.FC = () => {
 
       <div className="relative z-10 w-full max-w-7xl">
         {/* --- DASHBOARD --- */}
-        <div className="grid aspect-auto auto-rows-fr grid-cols-1 gap-6 md:aspect-[16/10] md:grid-cols-3">
+        <div className="grid auto-rows-auto grid-cols-1 gap-4 sm:gap-6 md:aspect-[16/10] md:auto-rows-fr md:grid-cols-3">
           {/* 1. DYNAMIC CARD: Persona Carousel (Default) OR User's Gravii ID (Connected) */}
           <div
-            className={`md:col-span-1 md:row-span-2 ${DESIGN_TOKENS.card.base} perspective-1000`}
+            className={`min-h-[500px] md:col-span-1 md:row-span-2 md:min-h-0 ${DESIGN_TOKENS.card.base} perspective-1000`}
           >
             {!isConnected ? <PersonaCarousel /> : <IdentityCard3D />}
           </div>
 
           {/* 2. CONNECT WALLET (Top Right Wide) */}
           <div
-            className={`md:col-span-2 ${DESIGN_TOKENS.card.base} flex flex-col justify-between p-8 md:p-12`}
+            className={`md:col-span-2 ${DESIGN_TOKENS.card.base} flex flex-col justify-between p-6 sm:p-8 md:p-12`}
           >
             <ConnectWalletCard />
           </div>
 
           {/* 3. WAITLIST (Bottom Middle) */}
           <div
-            className={`${DESIGN_TOKENS.card.base} relative flex flex-col p-8 md:p-10`}
+            className={`${DESIGN_TOKENS.card.base} relative flex flex-col p-6 sm:p-8 md:p-10`}
           >
             <WaitlistCard />
           </div>
 
           {/* 4. WALLET LOOKUP (Bottom Right) */}
           <div
-            className={`${DESIGN_TOKENS.card.base} relative flex flex-col p-8 md:p-10`}
+            className={`${DESIGN_TOKENS.card.base} relative flex flex-col p-6 sm:p-8 md:p-10`}
           >
             <LookupCard />
           </div>

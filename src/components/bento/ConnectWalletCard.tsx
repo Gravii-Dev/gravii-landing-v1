@@ -43,25 +43,26 @@ export const ConnectWalletCard: React.FC = () => {
     <>
       <div className={DESIGN_TOKENS.card.subtleGlow} />
 
-      <div className="relative z-10 flex items-start justify-between">
-        <div>
-          <h2 className="mb-2 font-gambarino text-5xl text-white md:text-6xl">
+      <div className="relative z-10 flex items-start justify-between gap-4">
+        <div className="flex-1">
+          <h2 className="mb-2 font-gambarino text-3xl text-white sm:text-4xl md:text-5xl lg:text-6xl">
             Connect
           </h2>
-          <p className="max-w-md font-gambarino text-white/40 text-xl">
+          <p className="max-w-md font-gambarino text-base text-white/40 sm:text-lg md:text-xl">
             Establish a secure link to the Gravii network.
           </p>
         </div>
         {/* Subtle Status Indicator */}
-        <div className="flex flex-col items-end">
-          <div
-            className={`h-2 w-2 rounded-full ${
+        <div className="flex shrink-0 flex-col items-end">
+          <output
+            className={`block h-2 w-2 rounded-full ${
               isConnected
                 ? 'bg-acid-400 shadow-[0_0_10px_rgba(163,230,53,0.4)]'
                 : 'bg-red-500/50'
             }`}
+            aria-label={isConnected ? 'Connected' : 'Disconnected'}
           />
-          <span className="mt-2 font-gambarino text-sm text-zinc-500">
+          <span className="mt-2 font-gambarino text-xs text-zinc-500 sm:text-sm">
             {isConnected ? 'live' : 'offline'}
           </span>
         </div>
@@ -85,12 +86,12 @@ export const ConnectWalletCard: React.FC = () => {
             </svg>
           </Button>
         ) : (
-          <div className="group relative flex w-full items-center justify-between overflow-hidden rounded-xl border border-white/5 bg-white/[0.03] p-6">
+          <div className="group relative flex w-full flex-col items-start justify-between gap-4 overflow-hidden rounded-xl border border-white/5 bg-white/[0.03] p-4 sm:flex-row sm:items-center sm:p-6">
             <div className="z-10 flex flex-col">
-              <span className="font-gambarino text-3xl text-white">
+              <span className="font-gambarino text-white text-xl sm:text-2xl md:text-3xl">
                 Connected
               </span>
-              <span className="font-gambarino text-sm text-zinc-500">
+              <span className="font-gambarino text-xs text-zinc-500 sm:text-sm">
                 {address
                   ? `${address.slice(0, 6)}...${address.slice(-4)}`
                   : '0x71C...9A21'}
@@ -98,7 +99,8 @@ export const ConnectWalletCard: React.FC = () => {
               <button
                 type="button"
                 onClick={handleDisconnect}
-                className="mt-2 flex w-fit items-center gap-1 font-gambarino text-red-500/40 text-xs transition-colors hover:text-red-400"
+                className="mt-2 flex w-fit items-center gap-1 font-gambarino text-[10px] text-red-500/40 transition-colors hover:text-red-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 sm:text-xs"
+                aria-label="Disconnect wallet"
               >
                 <svg
                   width="12"
@@ -115,11 +117,11 @@ export const ConnectWalletCard: React.FC = () => {
                 DISCONNECT
               </button>
             </div>
-            <div className="z-10 text-right">
-              <span className="font-gambarino text-2xl text-acid-400">
+            <div className="z-10 text-left sm:text-right">
+              <span className="font-gambarino text-acid-400 text-lg sm:text-xl md:text-2xl">
                 {inviteCode}
               </span>
-              <span className="block font-gambarino text-sm text-zinc-600">
+              <span className="block font-gambarino text-xs text-zinc-600 sm:text-sm">
                 ACCESS GRANTED
               </span>
             </div>

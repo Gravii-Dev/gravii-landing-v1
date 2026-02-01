@@ -4,6 +4,18 @@ const path = require('node:path')
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['@reown/appkit', '@reown/appkit-adapter-wagmi'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+        // search omitted = allow any query params (?q=80&w=1000&auto=format&fit=crop)
+      },
+    ],
+    qualities: [75, 85],
+  },
   turbopack: {
     // Use absolute path so parent /Users/kxwxn (pnpm-lock.yaml) is not used as root
     root: path.resolve(__dirname),

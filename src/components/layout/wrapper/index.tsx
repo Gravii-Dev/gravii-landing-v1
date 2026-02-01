@@ -1,6 +1,6 @@
 /**
- * Main page wrapper with Header, Marquee, and Footer (from main branch).
- * Theme and GSAP footer animation included. No WebGL/Lenis in this project.
+ * Main page wrapper with Header, Marquee, and Footer.
+ * Theme and GSAP footer animation included.
  */
 'use client'
 
@@ -8,10 +8,10 @@ import cn from 'clsx'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEffect, useRef } from 'react'
-import { Footer } from '@/components/layout/footer'
-import { Header } from '@/components/layout/header'
-import { Marquee } from '@/components/layout/marquee'
-import { Theme } from '@/components/layout/theme'
+import { Footer } from '@/src/components/layout/footer'
+import { Header } from '@/src/components/layout/header'
+import { Marquee } from '@/src/components/layout/marquee'
+import { Theme } from '@/src/components/layout/theme'
 import type { ThemeName } from '@/styles/config'
 
 if (typeof window !== 'undefined') {
@@ -35,23 +35,29 @@ export function Wrapper({
     const footerSection = footerSectionRef.current
     if (!footerSection) return
 
-    gsap.fromTo(
-      footerSection,
-      { opacity: 0, y: 150, scale: 0.95 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: footerSection,
-          start: 'top 85%',
-          end: 'top 15%',
-          toggleActions: 'play none none reverse',
-        },
-      }
-    )
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        footerSection,
+        { opacity: 0, y: 150, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: footerSection,
+            start: 'top 85%',
+            end: 'top 15%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      )
+    })
+
+    return () => {
+      ctx.revert() // Cleanup GSAP animations and ScrollTriggers
+    }
   }, [])
 
   return (

@@ -1,41 +1,64 @@
-import { Wrapper } from '@/components/layout/wrapper'
-import { ScrollReveal } from '@/components/ui/ScrollReveal'
-import { BentoGrid } from '../src/components/bento/BentoGrid'
-import { LabelsSection } from '../src/components/bento/LabelsSection'
-import { SplineScene } from '../src/components/layout/SplineScene'
+import dynamic from 'next/dynamic'
+import { ErrorBoundary } from '@/src/components/ErrorBoundary'
+import { SplineScene } from '@/src/components/layout/SplineScene'
+import { Wrapper } from '@/src/components/layout/wrapper'
+import { ScrollReveal } from '@/src/components/ui/ScrollReveal'
+
+const BentoGrid = dynamic(
+  () => import('@/src/components/bento/BentoGrid').then((m) => m.BentoGrid),
+  {
+    loading: () => (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="h-12 w-12 animate-spin rounded-full border-4 border-acid-400 border-r-transparent" />
+      </div>
+    ),
+  }
+)
+
+const LabelsSection = dynamic(
+  () =>
+    import('@/src/components/bento/LabelsSection').then((m) => m.LabelsSection),
+  { loading: () => <div className="min-h-[60vh]" /> }
+)
 
 export default function Home() {
   return (
     <Wrapper theme="dark" className="w-full bg-black">
-      {/* Section 1: 3D Spline Scene (Sticky/Fixed) */}
-      <ScrollReveal as="section" className="relative z-10 h-screen w-full">
-        <SplineScene />
-        <div className="pointer-events-none absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/50">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
+      {/* Section 1: 3D Spline Scene - same bg atmosphere as Bento */}
+      <ScrollReveal
+        as="section"
+        className="relative z-10 h-screen w-full bg-black"
+      >
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] rounded-full bg-white/[0.02] blur-[150px]" />
+          <div className="absolute right-[-10%] bottom-[-20%] h-[600px] w-[600px] rounded-full bg-zinc-800/[0.05] blur-[150px]" />
+        </div>
+        <div className="relative z-10 h-full w-full">
+          <ErrorBoundary
+            fallback={
+              <div className="h-screen bg-gradient-to-b from-black via-black/95 to-black" />
+            }
           >
-            <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-          </svg>
+            <SplineScene />
+          </ErrorBoundary>
         </div>
       </ScrollReveal>
 
       {/* Section 2: Bento Grid (Overlapping/scrolling over) */}
       <ScrollReveal as="section" className="relative z-20 pb-20">
-        <BentoGrid />
+        <ErrorBoundary>
+          <BentoGrid />
+        </ErrorBoundary>
       </ScrollReveal>
 
-      {/* Section 3: Labels & Analytics */}
+      {/* Section 3: Labels & Analytics - same bg atmosphere */}
       <ScrollReveal as="section" className="relative z-20 pb-20">
-        <div className="flex min-h-screen w-full items-center justify-center bg-black p-6 md:p-12 lg:p-20">
-          <div className="w-full max-w-7xl">
+        <div className="relative flex min-h-screen w-full items-center justify-center bg-black p-6 md:p-12 lg:p-20">
+          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+            <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] rounded-full bg-white/[0.02] blur-[150px]" />
+            <div className="absolute right-[-10%] bottom-[-20%] h-[600px] w-[600px] rounded-full bg-zinc-800/[0.05] blur-[150px]" />
+          </div>
+          <div className="relative z-10 w-full max-w-7xl">
             <LabelsSection />
           </div>
         </div>

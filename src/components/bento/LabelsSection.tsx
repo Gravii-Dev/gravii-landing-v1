@@ -1,32 +1,43 @@
 import type React from 'react'
+import { BEHAVIORAL_LABELS } from '@/src/config/constants'
 import { DESIGN_TOKENS } from '@/src/styles/design-tokens'
 import { SpendingAnalytics } from '../cards/SpendingAnalytics'
 
-const LABELS = ['SYBIL', 'SPENDING', 'RISK', 'YIELD', 'CHURN']
-
 export const LabelsSection: React.FC = () => {
   return (
-    <div className="flex w-full flex-col gap-10 pb-20">
+    <section
+      aria-labelledby="labels-heading"
+      className="flex w-full flex-col gap-10 pb-20"
+    >
       {/* Section Header */}
-      <div className="flex justify-center py-10">
-        <h2 className="font-gambarino text-6xl text-white tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] md:text-8xl">
+      <header className="flex justify-center py-10">
+        <h2
+          id="labels-heading"
+          className="font-gambarino text-4xl text-white tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] sm:text-5xl md:text-6xl lg:text-8xl"
+        >
           LABELS
         </h2>
-      </div>
+      </header>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         {/* LEFT: BEHAVIORAL LABELS */}
-        <div className={`${DESIGN_TOKENS.card.base} p-10 md:p-14`}>
+        <article
+          className={`${DESIGN_TOKENS.card.base} p-8 sm:p-10 md:p-14`}
+          aria-labelledby="behavioral-labels-heading"
+        >
           <div className={DESIGN_TOKENS.card.subtleGlow} />
           <div className="relative z-10 flex h-full flex-col">
-            <div className="mb-10 border-white/5 border-b pb-4">
-              <h3 className="font-gambarino text-2xl text-white/80 uppercase tracking-widest">
+            <header className="mb-10 border-white/5 border-b pb-4">
+              <h3
+                id="behavioral-labels-heading"
+                className="font-gambarino text-white/80 text-xl uppercase tracking-widest sm:text-2xl"
+              >
                 5 Behavioral Labels
               </h3>
-            </div>
+            </header>
 
             <ul className="flex flex-grow flex-col justify-center space-y-6">
-              {LABELS.map((label, i) => (
+              {BEHAVIORAL_LABELS.map((label, i) => (
                 <li
                   key={label}
                   className="group/item relative flex cursor-default items-center gap-6"
@@ -86,15 +97,16 @@ export const LabelsSection: React.FC = () => {
               ))}
             </ul>
           </div>
-        </div>
+        </article>
 
         {/* RIGHT: SPENDING ANALYTICS */}
-        <div
-          className={`${DESIGN_TOKENS.card.base} group flex flex-col p-10 md:p-14`}
+        <article
+          className={`${DESIGN_TOKENS.card.base} group flex flex-col p-8 sm:p-10 md:p-14`}
+          aria-labelledby="spending-analytics-heading"
         >
           <SpendingAnalytics />
-        </div>
+        </article>
       </div>
-    </div>
+    </section>
   )
 }
