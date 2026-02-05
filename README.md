@@ -1,22 +1,26 @@
-# Gravii Landing Page
+# Gravii
 
-A Next.js landing page for **Gravii** — behavioral analytics for Web3. Features a 3D Spline hero, bento-style dashboard, wallet connection via Reown AppKit, and persona/identity cards.
+A Next.js landing page for **Gravii** — behavioral analytics for Web3. Features a full-screen hero, a bento-style dashboard with persona cards, wallet connection via Reown AppKit, and a WebGPU TV-noise overlay.
 
 ## Tech Stack
 
-- **Next.js 16** (App Router, Turbopack)
-- **React 19**
-- **TypeScript**
-- **Tailwind CSS v4**
-- **Reown AppKit** (WalletConnect) + **Wagmi** + **Viem**
-- **Zustand** (global state)
-- **GSAP** (header/footer animations)
-- **Storybook 8** (component development & docs)
-- **Biome** (lint & format)
+| Layer | Technology |
+|-------|-----------|
+| Framework | **Next.js 16** (App Router, Turbopack) |
+| Language | **TypeScript** |
+| UI | **React 19** |
+| Styling | **Tailwind CSS v4** |
+| Web3 | **Reown AppKit** (WalletConnect) · **Wagmi** · **Viem** |
+| State | **Zustand** |
+| Animation | **GSAP** (scroll reveals, footer entrance) |
+| Graphics | **WebGPU** (TV-noise overlay, SVG fallback) |
+| Testing | **Vitest** · **React Testing Library** · **Playwright** (E2E) |
+| Tooling | **Biome** (lint & format) · **Storybook 8** · **Lefthook** |
 
 ## Prerequisites
 
-- **Bun** (package manager & runtime). [Install Bun](https://bun.sh/)
+- **Node.js 18+**
+- A package manager — **Bun**, **npm**, or **pnpm**
 
 ## Getting Started
 
@@ -28,108 +32,195 @@ bun install
 
 ### 2. Environment variables
 
-Copy `.env.example` to `.env.local` and set:
+Create `.env.local` in the project root:
 
-| Variable | Description |
-|----------|-------------|
-| `NEXT_PUBLIC_REOWN_PROJECT_ID` | Reown (WalletConnect) project ID from [cloud.reown.com](https://cloud.reown.com/) |
-| `NEXT_PUBLIC_SPLINE_SCENE_URL` | (Optional) Spline scene URL for the hero |
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `NEXT_PUBLIC_REOWN_PROJECT_ID` | Yes | Reown (WalletConnect) project ID — obtain from [cloud.reown.com](https://cloud.reown.com/) |
 
-### 3. Run development server
+> Without `NEXT_PUBLIC_REOWN_PROJECT_ID` the wallet connect modal will not function. A console warning is emitted at startup when the variable is missing.
+
+### 3. Run the development server
 
 ```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) (or the port shown in the terminal).
+Open [http://localhost:3000](http://localhost:3000).
 
-## Scripts
-
-| Command | Description |
-|--------|-------------|
-| `bun dev` | Start dev server (Turbopack) |
-| `bun run build` | Production build |
-| `bun start` | Run production server |
-| `bun run lint` | Biome lint + format check |
-| `bun run lint:next` | ESLint (Next/core-web-vitals) |
-| `bun run lint:all` | Biome + ESLint |
-| `bun run test` | Run tests (Vitest watch) |
-| `bun run test:run` | Run tests once (CI) |
-| `bun run test:e2e` | Playwright E2E (starts dev if needed) |
-| `bun run test:e2e:ui` | Playwright E2E with UI |
-| `bun run storybook` | Start Storybook (port 6006) |
-| `bun run build-storybook` | Build static Storybook |
-| `bunx biome check . --write` | Biome lint + format (fix) |
+---
 
 ## Project Structure
 
 ```
-├── app/                    # Next.js App Router
-│   ├── layout.tsx          # Root layout & providers
-│   ├── page.tsx            # Home (Spline, Bento, Labels sections)
-│   ├── providers.tsx       # React Query, Web3 providers
-│   └── web3-provider.tsx   # Reown AppKit + Wagmi setup
+├── app/                        # Next.js App Router
+│   ├── layout.tsx              # Root layout — fonts, skip link, TV noise overlay
+│   ├── page.tsx                # Home page — Hero → Bento → Labels sections
+│   ├── providers.tsx           # React Query + Web3 provider tree
+│   └── web3-provider.tsx       # Wagmi provider (SSR-safe, lazy-loaded)
+│
 ├── src/
-│   ├── components/         # 레이아웃·UI·페이지 컴포넌트 (@/src/components)
-│   │   ├── bento/          # BentoGrid, ConnectWalletCard, LabelsSection, etc.
-│   │   ├── cards/          # IdentityCard3D, PersonaCarousel, SpendingAnalytics
-│   │   ├── layout/         # Header, Footer, Marquee, Theme, Wrapper, SplineScene
-│   │   └── ui/             # Link, Image, Button, Input, ScrollReveal
-│   ├── config/             # Web3 & app constants
-│   ├── store/              # Zustand (walletStore, uiStore)
-│   ├── styles/             # globals.css, design-tokens
-│   └── utils/              # validators, image-placeholders
-├── test/                   # Vitest setup (test/setup.ts)
-└── styles/                 # Theme (colors, config) for layout components
+│   ├── components/
+│   │   ├── bento/              # Dashboard grid cards
+│   │   │   ├── BentoGrid.tsx           # Responsive 3-column grid layout
+│   │   │   ├── ConnectWalletCard.tsx   # Wallet link / connected state
+│   │   │   ├── LookupCard.tsx          # Address / ENS search
+│   │   │   ├── WaitlistCard.tsx        # Email waitlist form
+│   │   │   └── LabelsSection.tsx       # Behavioral labels + analytics
+│   │   ├── cards/              # Flippable identity cards
+│   │   │   ├── PersonaCarousel.tsx     # Auto-rotating persona showcase
+│   │   │   ├── IdentityCard3D.tsx      # Connected-wallet Gravii ID
+│   │   │   └── SpendingAnalytics.tsx   # Spending metrics card
+│   │   ├── effects/
+│   │   │   └── tv-noise/               # WebGPU noise overlay + SVG fallback
+│   │   ├── layout/             # Page-level layout primitives
+│   │   │   ├── HeroSection.tsx         # Full-screen hero
+│   │   │   ├── wrapper/                # Page wrapper (theme, footer anim)
+│   │   │   ├── header/                 # Scroll-hide header (currently inactive)
+│   │   │   ├── footer/                 # Footer with social links
+│   │   │   ├── marquee/                # Scrolling text strip
+│   │   │   ├── theme/                  # Theme context provider
+│   │   │   └── SplineScene.tsx         # 3D Spline scene (dormant)
+│   │   ├── ui/                 # Reusable base components
+│   │   │   ├── Button.tsx / Input.tsx
+│   │   │   ├── ScrollReveal.tsx        # GSAP scroll-triggered reveal
+│   │   │   ├── image/                  # next/image wrapper
+│   │   │   └── link/                   # Internal / external link router
+│   │   └── ErrorBoundary.tsx           # React error boundary
+│   ├── config/
+│   │   ├── constants.ts        # App-wide constants (art pieces, invite codes, labels)
+│   │   ├── personas.ts         # Persona data (carousel + identity card)
+│   │   └── web3.ts             # Reown AppKit + Wagmi adapter setup
+│   ├── store/
+│   │   ├── uiStore.ts          # UI state (art index, card flip, glitch, waitlist)
+│   │   └── walletStore.ts      # Wallet state (connection, address, invite code)
+│   ├── styles/
+│   │   ├── globals.css         # Tailwind v4 theme, animations, safelist
+│   │   └── design-tokens.ts    # Shared card styles and color tokens
+│   ├── types/index.ts          # Core TypeScript interfaces
+│   └── utils/
+│       ├── validators.ts       # Ethereum address / ENS / email validation
+│       └── image-placeholders.ts  # Base64 blur placeholders for next/image
+│
+├── styles/                     # Theme definitions used by layout CSS modules
+│   ├── colors.ts               # Color palette and theme map
+│   └── config.ts               # Theme name exports
+├── test/setup.ts               # Vitest global setup (jest-dom)
+├── e2e/home.spec.ts            # Playwright smoke test
+└── .storybook/                 # Storybook config
 ```
 
-**컴포넌트 위치**: 모든 컴포넌트는 `src/components/`에 통합. import 시 `@/src/components/...` 사용.
+All component imports use the `@/src/...` alias (configured in `tsconfig.json`).
 
-## E2E (Playwright)
+---
 
-E2E 테스트는 `e2e/` 디렉터리에 있으며, `bun run test:e2e`로 실행합니다. 최초 실행 전 브라우저 설치가 필요합니다:
+## Available Scripts
 
-```bash
-bunx playwright install
-```
+| Command | Description |
+|---------|-------------|
+| `bun dev` | Development server (Turbopack) |
+| `bun run build` | Production build |
+| `bun start` | Serve production build |
+| `bun run lint` | Biome check |
+| `bun run lint:next` | ESLint (Next.js rules) |
+| `bun run lint:all` | Biome + ESLint |
+| `bun run test` | Vitest (watch mode) |
+| `bun run test:run` | Vitest (single run, CI) |
+| `bun run test:e2e` | Playwright E2E |
+| `bun run test:e2e:ui` | Playwright E2E with browser UI |
+| `bun run storybook` | Storybook dev server (port 6006) |
+| `bun run build-storybook` | Static Storybook build |
+| `bunx biome check . --write` | Auto-fix lint & format |
 
-이미 `bun dev`가 실행 중이면 기존 서버를 재사용합니다.
+---
 
 ## Features
 
-- **Hero**: Full-screen Spline 3D intro (iframe).
-- **Bento grid**: Persona carousel (or 3D Identity Card when wallet connected), Connect Wallet, Waitlist, Lookup cards.
-- **Labels section**: 5 behavioral labels (SYBIL, SPENDING, RISK, YIELD, CHURN) and Spending Analytics.
-- **Layout**: Fixed header (GSAP scroll-hide), marquee strip, footer with GSAP scroll-in.
-- **Web3**: Connect wallet via Reown AppKit; connected state shows Gravii ID and invite code.
+### Hero Section
+Full-screen dark landing with a large typographic headline ("Connect once / Live differently") set in Gambarino, a handwritten subtitle in Gloria Hallelujah, and layered radial-gradient atmosphere.
 
-## Storybook
+### Bento Dashboard
+A responsive grid of interactive cards:
 
-Component stories live under `src/**/*.stories.tsx` and `components/**/*.stories.tsx`. The project uses **Storybook 8** with `@storybook/react-webpack5` (Next.js 16 does not support `@storybook/nextjs` preset yet). Global styles (`src/styles/globals.css`) and path alias `@/` are configured in `.storybook/`.
+- **Persona Carousel** — cycles through 5 Web3 personas. Each card flips on click to reveal a Gravii ID with behavioral labels and stats. Auto-advances every 5 seconds with a progress bar.
+- **Gravii Identity Card** — shown in place of the carousel when a wallet is connected. Flippable to reveal the user's on-chain profile.
+- **Connect Wallet** — opens the Reown AppKit modal. Once connected, displays a truncated address and a randomly assigned invite code.
+- **Waitlist** — email signup form with client-side validation.
+- **Lookup** — search field that validates Ethereum addresses and ENS names.
 
-- Run: `bun run storybook` → [http://localhost:6006](http://localhost:6006)
-- Build: `bun run build-storybook` (output: `storybook-static/`)
+### Labels & Analytics
+A two-column section displaying the five behavioral label categories (SYBIL, SPENDING, RISK, YIELD, CHURN) with interactive hover states, alongside a Spending Analytics card detailing key metrics and use cases.
+
+### Layout & Effects
+- **Marquee** — an infinite-scroll text strip between the main content and footer.
+- **Footer** — brand section with social links; entrance is animated via GSAP `ScrollTrigger`.
+- **TV Noise Overlay** — a full-screen noise effect rendered with WebGPU (`TVNoiseOverlay`). Falls back to an SVG `feTurbulence` filter on browsers without WebGPU support. Respects `prefers-reduced-motion`.
+- **Scroll Reveal** — all major sections fade and slide in as they enter the viewport, powered by GSAP.
+
+### Web3 Integration
+Wallet connection is handled by **Reown AppKit** with the **Wagmi** adapter. Supported networks: Ethereum mainnet, Polygon, Arbitrum. On connection, the app assigns one of three invite codes (`LUX-88`, `NOIR-99`, `VOID-00`) from a shared constant.
+
+---
 
 ## Testing
 
-- **Vitest** + **React Testing Library** for unit and component tests.
-- Setup: `test/setup.ts` (jest-dom), `vitest.config.ts` (path alias `@/`).
-- Run: `bun run test` (watch), `bun run test:run` (single run, CI).
-- Tests: `**/*.test.{ts,tsx}`, `**/*.spec.{ts,tsx}` (e.g. `src/components/ui/Button.test.tsx`, `src/utils/validators.test.ts`).
+### Unit / Component Tests (Vitest)
+
+```bash
+bun run test:run   # single run
+bun run test       # watch mode
+```
+
+Test files follow the `**/*.test.{ts,tsx}` pattern. Setup lives in `test/setup.ts` (registers `@testing-library/jest-dom`).
+
+Current coverage: **8 test files, 36 tests**.
+
+### E2E Tests (Playwright)
+
+```bash
+bunx playwright install   # first-time browser install
+bun run test:e2e          # run tests
+```
+
+E2E specs live in `e2e/`. If a dev server is already running on the configured port it will be reused.
+
+---
+
+## Storybook
+
+Stories are co-located next to their components (`**/*.stories.tsx`). The project uses Storybook 8 with `@storybook/react-webpack5` and has path-alias and global-style support configured in `.storybook/`.
+
+```bash
+bun run storybook          # dev → http://localhost:6006
+bun run build-storybook    # static output → storybook-static/
+```
+
+---
 
 ## Code Quality
 
-- **Biome** for lint and format (see `biome.json`).
-- **Lefthook** runs `biome check` and typecheck on pre-commit.
-- Use `@/src/...` for imports under `src/` to satisfy the no-deep-relative-imports rule.
+| Tool | Role |
+|------|------|
+| **Biome** | Primary linter and formatter (`biome.json`) |
+| **ESLint** | Next.js / core-web-vitals rules (`eslint.config.mjs`) |
+| **Lefthook** | Git hooks — runs Biome check and `tsc --noEmit` on pre-commit |
 
-## Learn More
+Run the full check suite before committing:
 
-- [Reown AppKit](https://docs.reown.com/appkit/overview)
+```bash
+bun run lint:all && bun run test:run
+```
+
+---
+
+## References
+
+- [Reown AppKit Docs](https://docs.reown.com/appkit/overview)
 - [Wagmi](https://wagmi.sh/)
 - [Next.js 16](https://nextjs.org/docs)
 - [Tailwind CSS v4](https://tailwindcss.com/docs)
+- [GSAP ScrollTrigger](https://greensock.com/scrolltrigger/)
 
-## License
+---
 
-Private. All rights reserved.
+*Private — all rights reserved.*

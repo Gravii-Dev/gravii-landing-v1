@@ -9,7 +9,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEffect, useRef } from 'react'
 import { Footer } from '@/src/components/layout/footer'
-import { Header } from '@/src/components/layout/header'
 import { Marquee } from '@/src/components/layout/marquee'
 import { Theme } from '@/src/components/layout/theme'
 import type { ThemeName } from '@/styles/config'
@@ -62,7 +61,6 @@ export function Wrapper({
 
   return (
     <Theme theme={theme} global>
-      <Header />
       <main
         id="main-content"
         className={cn('relative flex grow flex-col', className)}

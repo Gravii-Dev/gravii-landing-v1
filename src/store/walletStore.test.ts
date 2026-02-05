@@ -36,8 +36,11 @@ describe('useWalletStore', () => {
     expect(state.inviteCode).toBeNull()
   })
 
-  it('generateInviteCode returns one of the codes', () => {
-    const code = useWalletStore.getState().generateInviteCode()
-    expect(['LUX-88', 'NOIR-99', 'VOID-00']).toContain(code)
+  it('connect without address sets address to null', () => {
+    useWalletStore.getState().connect()
+    const state = useWalletStore.getState()
+    expect(state.isConnected).toBe(true)
+    expect(state.address).toBeNull()
+    expect(state.inviteCode).toMatch(/^(LUX-88|NOIR-99|VOID-00)$/)
   })
 })

@@ -13,6 +13,7 @@ vi.mock('next/image', () => ({
     [key: string]: unknown
   }) {
     /* eslint-disable-next-line @next/next/no-img-element -- mock for tests */
+    // biome-ignore lint/performance/noImgElement: intentional <img> mock for next/image in tests
     return <img src={src} alt={alt ?? ''} data-testid="next-image" {...props} />
   },
 }))

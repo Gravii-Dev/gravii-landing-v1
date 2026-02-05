@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { TVNoiseOverlay } from '@/src/components/effects/tv-noise'
 import { Link } from '@/src/components/ui/link'
 import { Providers } from './providers'
 import '../src/styles/globals.css'
@@ -20,13 +21,6 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap"
         />
-        {/* Preload critical 3D scene data */}
-        <link
-          rel="preload"
-          href="/spline-scene-data.json"
-          as="fetch"
-          crossOrigin="anonymous"
-        />
       </head>
       <body className="bg-black font-gambarino text-white">
         {/* Skip to main content link for keyboard users */}
@@ -37,6 +31,7 @@ export default function RootLayout({
           Skip to main content
         </Link>
         <Providers>{children}</Providers>
+        <TVNoiseOverlay />
       </body>
     </html>
   )

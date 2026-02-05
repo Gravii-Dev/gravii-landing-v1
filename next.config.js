@@ -44,12 +44,12 @@ const nextConfig = {
         crypto: require.resolve('crypto-browserify'),
         stream: require.resolve('stream-browserify'),
         buffer: require.resolve('buffer'),
-        util: false,
-        assert: false,
-        http: false,
-        https: false,
-        os: false,
-        url: false,
+        util: require.resolve('util'),
+        assert: require.resolve('assert'),
+        http: require.resolve('stream-http'),
+        https: require.resolve('https-browserify'),
+        os: require.resolve('os-browserify/browser'),
+        url: require.resolve('url'),
       }
     }
     return config

@@ -3,7 +3,7 @@
 import type { Application } from '@splinetool/runtime'
 import { useEffect, useRef, useState } from 'react'
 
-export function SplineScene(): React.JSX.Element {
+export function SplineScene() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
   const appRef = useRef<Application | null>(null)
@@ -49,8 +49,8 @@ export function SplineScene(): React.JSX.Element {
         const res = await fetch('/spline-scene-data.json')
         if (!res.ok) throw new Error('Failed to load 3D scene')
 
-        const data = await res.json()
-        app.start(data as ArrayBuffer)
+        const data = await res.arrayBuffer()
+        app.start(data)
         setIsLoading(false)
       } catch (err) {
         console.error('Spline scene load failed:', err)

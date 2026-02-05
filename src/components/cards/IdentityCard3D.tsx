@@ -9,11 +9,15 @@ import { DARK_BLUR_PLACEHOLDER } from '@/src/utils/image-placeholders'
 export const IdentityCard3D: React.FC = () => {
   const isCardFlipped = useUIStore((state) => state.isCardFlipped)
   const showGlitch = useUIStore((state) => state.showGlitch)
-  const _setCardFlipped = useUIStore((state) => state.setCardFlipped)
+  const setCardFlipped = useUIStore((state) => state.setCardFlipped)
 
   return (
-    <div
-      className={`transform-style-3d relative h-full w-full transition-transform duration-700 ${
+    <button
+      type="button"
+      onClick={() => setCardFlipped(!isCardFlipped)}
+      aria-label={`Gravii ID card. Click to ${isCardFlipped ? 'show front' : 'reveal details'}`}
+      aria-pressed={isCardFlipped}
+      className={`transform-style-3d relative h-full w-full cursor-pointer border-none bg-transparent p-0 text-left transition-transform duration-700 ${
         isCardFlipped ? 'rotate-y-180' : 'animate-float'
       } ${showGlitch ? 'animate-glitch-entry' : ''}`}
     >
@@ -224,6 +228,6 @@ export const IdentityCard3D: React.FC = () => {
           [NO.001]
         </div>
       </div>
-    </div>
+    </button>
   )
 }

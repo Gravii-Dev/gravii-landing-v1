@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import { ErrorBoundary } from '@/src/components/ErrorBoundary'
-import { SplineScene } from '@/src/components/layout/SplineScene'
+import { HeroSection } from '@/src/components/layout/HeroSection'
 import { Wrapper } from '@/src/components/layout/wrapper'
 import { ScrollReveal } from '@/src/components/ui/ScrollReveal'
 
@@ -24,25 +24,8 @@ const LabelsSection = dynamic(
 export default function Home() {
   return (
     <Wrapper theme="dark" className="w-full bg-black">
-      {/* Section 1: 3D Spline Scene - same bg atmosphere as Bento */}
-      <ScrollReveal
-        as="section"
-        className="relative z-10 h-screen w-full bg-black"
-      >
-        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-          <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] rounded-full bg-white/[0.02] blur-[150px]" />
-          <div className="absolute right-[-10%] bottom-[-20%] h-[600px] w-[600px] rounded-full bg-zinc-800/[0.05] blur-[150px]" />
-        </div>
-        <div className="relative z-10 h-full w-full">
-          <ErrorBoundary
-            fallback={
-              <div className="h-screen bg-gradient-to-b from-black via-black/95 to-black" />
-            }
-          >
-            <SplineScene />
-          </ErrorBoundary>
-        </div>
-      </ScrollReveal>
+      {/* Section 1: Hero Section */}
+      <HeroSection />
 
       {/* Section 2: Bento Grid (Overlapping/scrolling over) */}
       <ScrollReveal as="section" className="relative z-20 pb-20">
