@@ -13,7 +13,7 @@ export const ThemeContext = createContext<{
   name: 'dark',
   theme: themes.dark,
   setThemeName: () => {
-    void 0
+    throw new Error('ThemeContext must be used within Theme provider')
   },
 })
 

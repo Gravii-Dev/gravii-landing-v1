@@ -10,14 +10,14 @@ import { DARK_BLUR_PLACEHOLDER } from '@/src/utils/image-placeholders'
 
 export const ArtCard: React.FC = () => {
   const currentArtIndex = useUIStore((state) => state.currentArtIndex)
-  const setCurrentArtIndex = useUIStore((state) => state.setCurrentArtIndex)
+  const incrementArtIndex = useUIStore((state) => state.incrementArtIndex)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentArtIndex((currentArtIndex + 1) % ART_PIECES.length)
+      incrementArtIndex(ART_PIECES.length)
     }, 4000)
     return () => clearInterval(interval)
-  }, [currentArtIndex, setCurrentArtIndex])
+  }, [incrementArtIndex])
 
   return (
     <>

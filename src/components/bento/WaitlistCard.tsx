@@ -4,6 +4,7 @@ import type React from 'react'
 import { useState } from 'react'
 import { useUIStore } from '@/src/store'
 import { DESIGN_TOKENS } from '@/src/styles/design-tokens'
+import { isValidEmail } from '@/src/utils/validators'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 
@@ -14,11 +15,6 @@ export const WaitlistCard: React.FC = () => {
   const joinedWaitlist = useUIStore((state) => state.joinedWaitlist)
   const setJoinedWaitlist = useUIStore((state) => state.setJoinedWaitlist)
 
-  const validateEmail = (email: string) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return regex.test(email)
-  }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
@@ -28,7 +24,7 @@ export const WaitlistCard: React.FC = () => {
       return
     }
 
-    if (!validateEmail(email)) {
+    if (!isValidEmail(email)) {
       setError('Please enter a valid email address')
       return
     }

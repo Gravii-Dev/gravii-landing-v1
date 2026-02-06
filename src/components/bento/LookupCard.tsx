@@ -30,7 +30,7 @@ export const LookupCard: React.FC = () => {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false)
-      console.log(`Searching for ${validation.type}: ${validation.normalized}`)
+      // TODO: Implement actual search logic
     }, 1000)
   }
 

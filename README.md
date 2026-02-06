@@ -1,6 +1,6 @@
 # Gravii
 
-A Next.js landing page for **Gravii** — behavioral analytics for Web3. Features a full-screen hero, a bento-style dashboard with persona cards, wallet connection via Reown AppKit, and a WebGPU TV-noise overlay.
+A Next.js landing page for **Gravii** — behavioral analytics for Web3. Features a full-screen hero, a bento-style dashboard with persona cards, and wallet connection via Reown AppKit.
 
 ## Tech Stack
 
@@ -13,7 +13,6 @@ A Next.js landing page for **Gravii** — behavioral analytics for Web3. Feature
 | Web3 | **Reown AppKit** (WalletConnect) · **Wagmi** · **Viem** |
 | State | **Zustand** |
 | Animation | **GSAP** (scroll reveals, footer entrance) |
-| Graphics | **WebGPU** (TV-noise overlay, SVG fallback) |
 | Testing | **Vitest** · **React Testing Library** · **Playwright** (E2E) |
 | Tooling | **Biome** (lint & format) · **Storybook 8** · **Lefthook** |
 
@@ -54,7 +53,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ```
 ├── app/                        # Next.js App Router
-│   ├── layout.tsx              # Root layout — fonts, skip link, TV noise overlay
+│   ├── layout.tsx              # Root layout — fonts, skip link
 │   ├── page.tsx                # Home page — Hero → Bento → Labels sections
 │   ├── providers.tsx           # React Query + Web3 provider tree
 │   └── web3-provider.tsx       # Wagmi provider (SSR-safe, lazy-loaded)
@@ -71,8 +70,6 @@ Open [http://localhost:3000](http://localhost:3000).
 │   │   │   ├── PersonaCarousel.tsx     # Auto-rotating persona showcase
 │   │   │   ├── IdentityCard3D.tsx      # Connected-wallet Gravii ID
 │   │   │   └── SpendingAnalytics.tsx   # Spending metrics card
-│   │   ├── effects/
-│   │   │   └── tv-noise/               # WebGPU noise overlay + SVG fallback
 │   │   ├── layout/             # Page-level layout primitives
 │   │   │   ├── HeroSection.tsx         # Full-screen hero
 │   │   │   ├── wrapper/                # Page wrapper (theme, footer anim)
@@ -154,7 +151,6 @@ A two-column section displaying the five behavioral label categories (SYBIL, SPE
 ### Layout & Effects
 - **Marquee** — an infinite-scroll text strip between the main content and footer.
 - **Footer** — brand section with social links; entrance is animated via GSAP `ScrollTrigger`.
-- **TV Noise Overlay** — a full-screen noise effect rendered with WebGPU (`TVNoiseOverlay`). Falls back to an SVG `feTurbulence` filter on browsers without WebGPU support. Respects `prefers-reduced-motion`.
 - **Scroll Reveal** — all major sections fade and slide in as they enter the viewport, powered by GSAP.
 
 ### Web3 Integration

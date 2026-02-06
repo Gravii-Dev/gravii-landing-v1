@@ -3,6 +3,7 @@ import type { UIState } from '../types'
 
 interface UIStore extends UIState {
   setCurrentArtIndex: (index: number) => void
+  incrementArtIndex: (max: number) => void
   setCardFlipped: (flipped: boolean) => void
   setShowGlitch: (show: boolean) => void
   setJoinedWaitlist: (joined: boolean) => void
@@ -16,6 +17,7 @@ export const useUIStore = create<UIStore>((set) => ({
   joinedWaitlist: false,
 
   setCurrentArtIndex: (index) => set({ currentArtIndex: index }),
+  incrementArtIndex: (max) => set((state) => ({ currentArtIndex: (state.currentArtIndex + 1) % max })),
   setCardFlipped: (flipped) => set({ isCardFlipped: flipped }),
   setShowGlitch: (show) => set({ showGlitch: show }),
   setJoinedWaitlist: (joined) => set({ joinedWaitlist: joined }),
