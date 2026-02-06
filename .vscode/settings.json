@@ -30,7 +30,7 @@
   // CSS (Tailwind v4)
   "css.lint.validProperties": ["user-drag"],
   "css.lint.unknownAtRules": "ignore",
-  "tailwindCSS.experimental.configFile": "lib/styles/css/tailwind.css",
+  "tailwindCSS.experimental.configFile": "src/styles/globals.css",
   "tailwindCSS.includeLanguages": {
     "typescriptreact": "html"
   },
