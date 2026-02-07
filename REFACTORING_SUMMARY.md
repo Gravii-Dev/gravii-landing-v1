@@ -50,17 +50,17 @@ All phases of the comprehensive refactoring plan have been implemented. The proj
 - ✅ `src/components/ui/Input.tsx` - Reusable input component
 
 **Bento Card Components:**
-- ✅ `src/components/bento/ArtCard.tsx` (80 lines)
+- ✅ `src/components/dashboard/ArtCard.tsx` (80 lines)
   - Art slider with auto-rotation
   - Integrated with `useUIStore`
-- ✅ `src/components/bento/ConnectWalletCard.tsx` (90 lines)
+- ✅ `src/components/dashboard/ConnectWalletCard.tsx` (90 lines)
   - Real Web3 wallet connection via Reown AppKit
   - Integrated with `useAppKit`, `useAccount`, `useDisconnect`
-- ✅ `src/components/bento/WaitlistCard.tsx` (50 lines)
+- ✅ `src/components/dashboard/WaitlistCard.tsx` (50 lines)
   - Email waitlist form
-- ✅ `src/components/bento/LookupCard.tsx` (40 lines)
+- ✅ `src/components/dashboard/LookupCard.tsx` (40 lines)
   - Wallet address lookup UI
-- ✅ `src/components/bento/LabelsSection.tsx` (120 lines)
+- ✅ `src/components/dashboard/LabelsSection.tsx` (120 lines)
   - 5 behavioral labels with hover effects
   - Integrated SpendingAnalytics card
 
@@ -75,7 +75,7 @@ All phases of the comprehensive refactoring plan have been implemented. The proj
 - ✅ `src/components/layout/SplineScene.tsx` (moved from root)
 
 **Integration Component:**
-- ✅ `src/components/bento/BentoGrid.tsx` (60 lines)
+- ✅ `src/components/dashboard/DashboardLayout.tsx` (60 lines)
   - Combines all cards into cohesive grid layout
   - Manages dynamic card switching (Art → Identity)
 
@@ -104,7 +104,7 @@ All phases of the comprehensive refactoring plan have been implemented. The proj
 ### Phase 5: Final Integration & Cleanup ✓
 **New Entry Point:**
 - ✅ `src/main.tsx` - New entry point with `globals.css` import
-- ✅ `src/App.tsx` - Refactored to use `BentoGrid` instead of `BentoSection`
+- ✅ `src/App.tsx` - Refactored to use `DashboardLayout` instead of `BentoSection`
 
 **Design Tokens:**
 - ✅ `src/styles/design-tokens.ts` - Centralized design system
@@ -196,7 +196,7 @@ bun run tsc --noEmit
 │   │   ├── layout/
 │   │   │   └── SplineScene.tsx          ✅ Moved from root
 │   │   ├── bento/
-│   │   │   ├── BentoGrid.tsx            ✅ Main grid container
+│   │   │   ├── DashboardLayout.tsx            ✅ Main grid container
 │   │   │   ├── ArtCard.tsx              ✅ Art slider
 │   │   │   ├── ConnectWalletCard.tsx    ✅ Web3 wallet connection
 │   │   │   ├── WaitlistCard.tsx         ✅ Email form

@@ -60,12 +60,12 @@ Open [http://localhost:3000](http://localhost:3000).
 │
 ├── src/
 │   ├── components/
-│   │   ├── bento/              # Dashboard grid cards
-│   │   │   ├── BentoGrid.tsx           # Responsive 3-column grid layout
-│   │   │   ├── ConnectWalletCard.tsx   # Wallet link / connected state
-│   │   │   ├── LookupCard.tsx          # Address / ENS search
-│   │   │   ├── WaitlistCard.tsx        # Email waitlist form
-│   │   │   └── LabelsSection.tsx       # Behavioral labels + analytics
+│   │   ├── dashboard/           # Dashboard grid cards
+│   │   │   ├── DashboardLayout.tsx   # Responsive 3-column grid layout
+│   │   │   ├── ConnectWalletCard.tsx # Wallet link / connected state
+│   │   │   ├── LookupCard.tsx        # Address / ENS search
+│   │   │   ├── WaitlistCard.tsx      # Email waitlist form
+│   │   │   └── LabelsSection.tsx     # Behavioral labels + analytics
 │   │   ├── cards/              # Flippable identity cards
 │   │   │   ├── PersonaCarousel.tsx     # Auto-rotating persona showcase
 │   │   │   ├── IdentityCard3D.tsx      # Connected-wallet Gravii ID
@@ -136,7 +136,7 @@ All component imports use the `@/src/...` alias (configured in `tsconfig.json`).
 ### Hero Section
 Full-screen dark landing with a large typographic headline ("Connect once / Live differently") set in Gambarino, a handwritten subtitle in Gloria Hallelujah, and layered radial-gradient atmosphere.
 
-### Bento Dashboard
+### Dashboard Grid
 A responsive grid of interactive cards:
 
 - **Persona Carousel** — cycles through 5 Web3 personas. Each card flips on click to reveal a Gravii ID with behavioral labels and stats. Auto-advances every 5 seconds with a progress bar.

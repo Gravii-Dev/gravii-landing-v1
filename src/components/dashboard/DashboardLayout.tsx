@@ -9,7 +9,7 @@ import { ConnectWalletCard } from './ConnectWalletCard'
 import { LookupCard } from './LookupCard'
 import { WaitlistCard } from './WaitlistCard'
 
-export const BentoGrid: React.FC = () => {
+export const DashboardLayout: React.FC = () => {
   const isConnected = useWalletStore((state) => state.isConnected)
 
   return (

@@ -4,8 +4,8 @@ import { HeroSection } from '@/src/components/layout/HeroSection'
 import { Wrapper } from '@/src/components/layout/wrapper'
 import { ScrollReveal } from '@/src/components/ui/ScrollReveal'
 
-const BentoGrid = dynamic(
-  () => import('@/src/components/bento/BentoGrid').then((m) => m.BentoGrid),
+const DashboardLayout = dynamic(
+  () => import('@/src/components/dashboard/DashboardLayout').then((m) => m.DashboardLayout),
   {
     loading: () => (
       <div className="flex min-h-screen items-center justify-center">
@@ -17,7 +17,7 @@ const BentoGrid = dynamic(
 
 const LabelsSection = dynamic(
   () =>
-    import('@/src/components/bento/LabelsSection').then((m) => m.LabelsSection),
+    import('@/src/components/dashboard/LabelsSection').then((m) => m.LabelsSection),
   { loading: () => <div className="min-h-[60vh]" /> }
 )
 
@@ -27,10 +27,10 @@ export default function Home() {
       {/* Section 1: Hero Section */}
       <HeroSection />
 
-      {/* Section 2: Bento Grid (Overlapping/scrolling over) */}
+      {/* Section 2: Dashboard Layout (Overlapping/scrolling over) */}
       <ScrollReveal as="section" className="relative z-20 pb-20">
         <ErrorBoundary>
-          <BentoGrid />
+          <DashboardLayout />
         </ErrorBoundary>
       </ScrollReveal>
 

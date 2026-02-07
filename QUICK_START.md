@@ -79,7 +79,7 @@ bun install
 ```
 App (Web3 Providers)
 ├── SplineScene (3D background)
-└── BentoGrid
+└── DashboardLayout
     ├── ArtCard / IdentityCard3D (dynamic)
     ├── ConnectWalletCard
     ├── WaitlistCard

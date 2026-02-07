@@ -51,7 +51,7 @@ disabled:opacity-50 disabled:cursor-not-allowed
 ---
 
 ### 1.3 WaitlistCard - Form Validation ✅ FIXED
-**File**: `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/bento/WaitlistCard.tsx`
+**File**: `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/dashboard/WaitlistCard.tsx`
 
 **Issues**:
 - No email validation
@@ -98,7 +98,7 @@ disabled:opacity-50 disabled:cursor-not-allowed
 ---
 
 ### 1.4 LookupCard - Missing Label ✅ FIXED
-**File**: `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/bento/LookupCard.tsx`
+**File**: `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/dashboard/LookupCard.tsx`
 
 **Issue**: Input without label (WCAG 3.3.2 - Labels or Instructions)
 
@@ -193,8 +193,8 @@ disabled:opacity-50 disabled:cursor-not-allowed
 
 ## 2. RESPONSIVE DESIGN ISSUES
 
-### 2.1 BentoGrid - Mobile Layout ✅ FIXED
-**File**: `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/bento/BentoGrid.tsx`
+### 2.1 DashboardLayout - Mobile Layout ✅ FIXED
+**File**: `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/dashboard/DashboardLayout.tsx`
 
 **Issues**:
 - Cards too small on mobile
@@ -215,7 +215,7 @@ min-h-[500px] md:min-h-0  // Ensure cards are tall enough on mobile
 ---
 
 ### 2.2 ConnectWalletCard - Text Sizing ✅ FIXED
-**File**: `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/bento/ConnectWalletCard.tsx`
+**File**: `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/dashboard/ConnectWalletCard.tsx`
 
 **Issue**: Text too large on mobile, causing overflow
 
@@ -237,7 +237,7 @@ text-xl sm:text-2xl md:text-3xl
 ---
 
 ### 2.3 LabelsSection - Responsive Typography ✅ FIXED
-**File**: `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/bento/LabelsSection.tsx`
+**File**: `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/dashboard/LabelsSection.tsx`
 
 **Fixes Applied**:
 ```tsx
@@ -312,7 +312,7 @@ useEffect(() => {
 ## 4. SEMANTIC HTML & SEO
 
 ### 4.1 Section Elements ✅ FIXED
-**File**: `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/bento/LabelsSection.tsx`
+**File**: `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/dashboard/LabelsSection.tsx`
 
 **Changes**:
 ```tsx
@@ -390,11 +390,11 @@ npm run test:a11y
 ### Components (9 files):
 1. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/ui/Button.tsx`
 2. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/ui/Input.tsx`
-3. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/bento/WaitlistCard.tsx`
-4. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/bento/LookupCard.tsx`
-5. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/bento/ConnectWalletCard.tsx`
-6. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/bento/BentoGrid.tsx`
-7. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/bento/LabelsSection.tsx`
+3. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/dashboard/WaitlistCard.tsx`
+4. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/dashboard/LookupCard.tsx`
+5. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/dashboard/ConnectWalletCard.tsx`
+6. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/dashboard/DashboardLayout.tsx`
+7. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/dashboard/LabelsSection.tsx`
 8. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/cards/PersonaCarousel.tsx`
 9. `/Users/kxwxn/Gravii/Gravii-Lp-1/src/components/cards/SpendingAnalytics.tsx`
 
