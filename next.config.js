@@ -4,6 +4,7 @@ const path = require('node:path')
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['@reown/appkit', '@reown/appkit-adapter-wagmi'],
+  basePath: '/landingpage',
   images: {
     remotePatterns: [
       {
