@@ -56,6 +56,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Custom crosshair cursor: hide default when active (전체에서 기본 커서 숨김) */
+body.crosshair-cursor-active,
+body.crosshair-cursor-active * {
+  cursor: none !important;
+}
+
 /* Keyboard Focus Styles */
 *:focus-visible {
   outline: 2px solid var(--color-acid-400);

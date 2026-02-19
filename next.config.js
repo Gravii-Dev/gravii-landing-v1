@@ -3,7 +3,15 @@ const path = require('node:path')
 
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@reown/appkit', '@reown/appkit-adapter-wagmi'],
+  transpilePackages: [
+    '@reown/appkit',
+    '@reown/appkit-adapter-wagmi',
+    'wagmi',
+    'viem',
+    '@tanstack/react-query',
+    '@splinetool/react-spline',
+    '@splinetool/runtime',
+  ],
   basePath: '/landingpage',
   images: {
     remotePatterns: [
@@ -30,6 +38,9 @@ const nextConfig = {
       https: 'https-browserify',
       os: 'os-browserify/browser',
       url: 'url',
+      zlib: 'browserify-zlib',
+      events: 'events',
+      process: 'process/browser',
     },
   },
   webpack: (config, { isServer }) => {
@@ -51,9 +62,25 @@ const nextConfig = {
         https: require.resolve('https-browserify'),
         os: require.resolve('os-browserify/browser'),
         url: require.resolve('url'),
+        zlib: require.resolve('browserify-zlib'),
+        events: require.resolve('events'),
+        process: require.resolve('process/browser'),
       }
     }
     return config
+  },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin-allow-popups',
+          },
+        ],
+      },
+    ]
   },
 }
 

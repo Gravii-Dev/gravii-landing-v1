@@ -2,6 +2,7 @@
 
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useLenis } from 'lenis/react'
 import { useEffect, useRef } from 'react'
 import s from './header.module.css'
 
@@ -11,9 +12,14 @@ if (typeof window !== 'undefined') {
 
 export function Header() {
   const headerRef = useRef<HTMLElement>(null)
+  const lenis = useLenis()
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (lenis) {
+      lenis.scrollTo(0, { lerp: 0.08 })
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   useEffect(() => {
@@ -46,23 +52,28 @@ export function Header() {
     }
   }, [])
 
+  // Lenis 스크롤과 GSAP ScrollTrigger 동기화
+  useEffect(() => {
+    if (!lenis) return
+    lenis.on('scroll', ScrollTrigger.update)
+    return () => {
+      lenis.off('scroll', ScrollTrigger.update)
+    }
+  }, [lenis])
+
   return (
     <header ref={headerRef} className={s.header}>
       <nav className={s.nav}>
         <div className={s.container}>
           <button
             id="header-logo"
-            onClick={scrollToTop}
-            className={s.logo}
             type="button"
+            className={s.logo}
+            onClick={scrollToTop}
+            aria-label="맨 위로 이동"
           >
             Gravii
           </button>
-          <div className={s.actions}>
-            <button className={s.walletButton} type="button">
-              Connect Wallet
-            </button>
-          </div>
         </div>
       </nav>
     </header>

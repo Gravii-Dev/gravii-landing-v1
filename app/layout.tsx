@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { CrosshairCursor } from '@/src/components/ui/CrosshairCursor'
 import { Link } from '@/src/components/ui/link'
 import { Providers } from './providers'
 import '../src/styles/globals.css'
@@ -29,7 +30,10 @@ export default function RootLayout({
         >
           Skip to main content
         </Link>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <CrosshairCursor />
+        </Providers>
       </body>
     </html>
   )

@@ -17,7 +17,8 @@ export const useUIStore = create<UIStore>((set) => ({
   joinedWaitlist: false,
 
   setCurrentArtIndex: (index) => set({ currentArtIndex: index }),
-  incrementArtIndex: (max) => set((state) => ({ currentArtIndex: (state.currentArtIndex + 1) % max })),
+  incrementArtIndex: (max) =>
+    set((state) => ({ currentArtIndex: (state.currentArtIndex + 1) % max })),
   setCardFlipped: (flipped) => set({ isCardFlipped: flipped }),
   setShowGlitch: (show) => set({ showGlitch: show }),
   setJoinedWaitlist: (joined) => set({ joinedWaitlist: joined }),
