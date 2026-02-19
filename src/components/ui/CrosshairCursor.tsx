@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useSyncExternalStore } from 'react'
 
 const BODY_CLASS = 'crosshair-cursor-active'
+const POINTER_QUERY = '(pointer: fine)'
 
 const INTERACTIVE_SELECTOR =
   'a, button, input, select, textarea, [role="button"], [role="link"], [tabindex]:not([tabindex="-1"]), [data-interactive], .cursor-pointer'
@@ -13,17 +14,36 @@ function isInteractiveElement(el: Element | null): boolean {
   return Boolean(target)
 }
 
+/** 마우스(정밀 포인터)가 있는 디바이스인지 동기적으로 판별 */
+function useIsPointerFine() {
+  const subscribe = useCallback((cb: () => void) => {
+    const mql = window.matchMedia(POINTER_QUERY)
+    mql.addEventListener('change', cb)
+    return () => mql.removeEventListener('change', cb)
+  }, [])
+  const getSnapshot = () => window.matchMedia(POINTER_QUERY).matches
+  const getServerSnapshot = () => false // SSR에서는 터치 디바이스로 가정
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+}
+
 export function CrosshairCursor() {
+  const isPointerDevice = useIsPointerFine()
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
   const [isHoveringInteractive, setIsHoveringInteractive] = useState(false)
 
   useEffect(() => {
-    document.body.classList.add(BODY_CLASS)
+    if (isPointerDevice) {
+      document.body.classList.add(BODY_CLASS)
+    } else {
+      document.body.classList.remove(BODY_CLASS)
+    }
     return () => document.body.classList.remove(BODY_CLASS)
-  }, [])
+  }, [isPointerDevice])
 
   useEffect(() => {
+    if (!isPointerDevice) return // 터치 디바이스에서는 이벤트 리스너 등록하지 않음
+
     const handleMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY })
       if (!isVisible) setIsVisible(true)
@@ -41,7 +61,7 @@ export function CrosshairCursor() {
       document.body.removeEventListener('mouseleave', handleLeave)
       document.body.removeEventListener('mouseenter', handleEnter)
     }
-  }, [isVisible])
+  }, [isVisible, isPointerDevice])
 
   if (!isVisible) return null
 
@@ -74,7 +94,13 @@ export function CrosshairCursor() {
       {/* Crosshair center: 연두색 when over interactive, else white */}
       <div
         className="absolute size-6 -translate-x-1/2 -translate-y-1/2"
-        style={{ left: position.x, top: position.y }}
+        style={{
+          left: position.x,
+          top: position.y,
+          animation: isHoveringInteractive
+            ? 'crosshair-heartbeat 0.85s ease-in-out infinite'
+            : 'none',
+        }}
       >
         <span
           className="absolute top-0 left-1/2 block h-6 w-0.5 -translate-x-px transition-colors duration-150"
@@ -85,6 +111,20 @@ export function CrosshairCursor() {
           style={{ backgroundColor: crossColor }}
         />
       </div>
+
+      {/* Glow ring: 인터랙티브 요소 위에서 빛나는 원형 후광 */}
+      {isHoveringInteractive && (
+        <div
+          className="absolute size-10 rounded-full"
+          style={{
+            left: position.x,
+            top: position.y,
+            background:
+              'radial-gradient(circle, var(--color-acid-400, #a3e635) 0%, transparent 70%)',
+            animation: 'crosshair-glow 0.85s ease-in-out infinite',
+          }}
+        />
+      )}
     </div>
   )
 }

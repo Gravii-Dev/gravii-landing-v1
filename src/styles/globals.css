@@ -185,6 +185,24 @@ textarea:focus-visible,
   }
 }
 
+@keyframes crosshair-heartbeat {
+  0%   { transform: translate(-50%, -50%) scale(1); }
+  14%  { transform: translate(-50%, -50%) scale(1.35); }
+  28%  { transform: translate(-50%, -50%) scale(1); }
+  42%  { transform: translate(-50%, -50%) scale(1.2); }
+  56%  { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes crosshair-glow {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  14%  { opacity: 0.6; transform: translate(-50%, -50%) scale(1.8); }
+  28%  { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  42%  { opacity: 0.4; transform: translate(-50%, -50%) scale(1.5); }
+  56%  { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
@@ -212,7 +230,9 @@ textarea:focus-visible,
   .animate-glitch-entry,
   .animate-spin,
   .animate-pulse,
-  .animate-bounce {
+  .animate-bounce,
+  .animate-crosshair-heartbeat,
+  .animate-crosshair-glow {
     animation: none !important;
   }
 }
