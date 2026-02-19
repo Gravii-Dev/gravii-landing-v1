@@ -1,0 +1,63 @@
+/* 헤더 Gravii와 동일: 가운데 선명, 바깥으로 갈수록 뿌옇게 */
+.spotlight {
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 60% at 50% 50%,
+    black 0%,
+    black 25%,
+    transparent 85%
+  );
+  mask-image: radial-gradient(
+    ellipse 75% 60% at 50% 50%,
+    black 0%,
+    black 25%,
+    transparent 85%
+  );
+}
+
+/* 서브타이틀만 위한 별도 하이라이트 조명: 한 줄 위에만 비치는 스포트라이트 */
+.spotlightSubtitle {
+  -webkit-mask-image: radial-gradient(
+    ellipse 120% 80% at 50% 50%,
+    black 0%,
+    black 35%,
+    transparent 80%
+  );
+  mask-image: radial-gradient(
+    ellipse 120% 80% at 50% 50%,
+    black 0%,
+    black 35%,
+    transparent 80%
+  );
+}
+
+.heroTitle {
+  font-family: var(--font-gambarino), serif;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.08);
+  /* clamp: 모바일 3rem ~ 데스크톱 11rem, 뷰포트 비율 반영 */
+  font-size: clamp(3rem, 12vw, 11rem);
+}
+
+.heroSubtitle {
+  font-family: var(--font-gloria), cursive;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.02em;
+  font-size: clamp(1rem, 2.8vw, 1.75rem);
+  margin-top: clamp(1rem, 2.5vw, 2rem);
+  white-space: nowrap;
+  /* 하이라이트: 조명이 글자에 닿는 느낌의 글로우 */
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.25),
+    0 0 28px rgba(255, 255, 255, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 480px) {
+  .heroSubtitle {
+    white-space: normal;
+    max-width: 90%;
+  }
+}

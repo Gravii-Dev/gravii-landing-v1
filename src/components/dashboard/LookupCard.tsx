@@ -44,20 +44,8 @@ export const LookupCard: React.FC = () => {
     <>
       <div className={DESIGN_TOKENS.card.subtleGlow} />
       <div className="relative z-10 flex h-full flex-col">
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6">
           <h3 className="font-gambarino text-3xl text-white">Lookup</h3>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="rgba(255,255,255,0.3)"
-            strokeWidth="1"
-            aria-hidden="true"
-          >
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
         </div>
 
         <p className="mb-6 font-gambarino text-lg text-zinc-500 leading-relaxed">

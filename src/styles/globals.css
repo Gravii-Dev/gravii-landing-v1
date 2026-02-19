@@ -7,6 +7,7 @@
 /* Tailwind v4 theme customization */
 @theme {
   --font-gambarino: "Gambarino", "DM Serif Display", serif;
+  --font-gloria: "Gloria Hallelujah", cursive;
 
   --color-acid-300: #bef264;
   --color-acid-400: #a3e635;
@@ -43,6 +44,21 @@
 /* Layout components (Header, Footer, Marquee) use this */
 :root {
   --font-display: "Gambarino", "DM Serif Display", serif;
+  /* Hero-style section background: 가운데를 중심으로 점점 어두워지는 비네팅 */
+  --bg-hero-gradient: radial-gradient(
+    ellipse 80% 70% at 50% 50%,
+    rgba(26, 26, 26, 0.98) 0%,
+    rgba(10, 10, 10, 0.99) 50%,
+    #000 100%
+  );
+}
+
+.font-gloria {
+  font-family: var(--font-gloria);
+}
+
+.bg-hero-gradient {
+  background: var(--bg-hero-gradient);
 }
 
 /* Global styles */

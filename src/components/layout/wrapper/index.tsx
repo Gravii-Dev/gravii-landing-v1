@@ -12,6 +12,7 @@ import { Footer } from '@/src/components/layout/footer'
 import { Header } from '@/src/components/layout/header'
 import { Marquee } from '@/src/components/layout/marquee'
 import { Theme } from '@/src/components/layout/theme'
+import { NoiseOverlay } from '@/src/components/ui/NoiseOverlay'
 import type { ThemeName } from '@/styles/config'
 
 if (typeof window !== 'undefined') {
@@ -63,6 +64,7 @@ export function Wrapper({
   return (
     <Theme theme={theme} global>
       <Header />
+      <NoiseOverlay />
       <main
         id="main-content"
         className={cn('relative flex grow flex-col', className)}
