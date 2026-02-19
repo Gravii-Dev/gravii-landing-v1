@@ -28,20 +28,20 @@ const LabelsSection = dynamic(
 
 export default function Home() {
   return (
-    <Wrapper theme="dark" className="w-full bg-black">
+    <Wrapper theme="dark" className="w-full bg-hero-gradient">
       {/* Section 1: Hero Section */}
       <HeroSection />
 
       {/* Section 2: Dashboard Layout (Overlapping/scrolling over) */}
-      <ScrollReveal as="section" className="relative z-20 pb-20">
+      <ScrollReveal as="section" className="relative z-20 pb-12 sm:pb-20">
         <ErrorBoundary>
           <DashboardLayout />
         </ErrorBoundary>
       </ScrollReveal>
 
       {/* Section 3: Labels & Analytics - same bg atmosphere */}
-      <ScrollReveal as="section" className="relative z-20 pb-20">
-        <div className="relative flex min-h-screen w-full items-center justify-center bg-black p-6 md:p-12 lg:p-20">
+      <ScrollReveal as="section" className="relative z-20 pb-12 sm:pb-20">
+        <div className="relative flex min-h-screen w-full items-center justify-center bg-transparent p-4 sm:p-6 md:p-8 lg:p-12 xl:p-20">
           <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
             <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] rounded-full bg-white/[0.02] blur-[150px]" />
             <div className="absolute right-[-10%] bottom-[-20%] h-[600px] w-[600px] rounded-full bg-zinc-800/[0.05] blur-[150px]" />

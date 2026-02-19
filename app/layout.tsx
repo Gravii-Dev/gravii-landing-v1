@@ -21,6 +21,10 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://api.fontshare.com/v2/css?f[]=gambarino@400&display=swap"
         />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap"
+        />
       </head>
       <body className="bg-black font-gambarino text-white">
         {/* Skip to main content link for keyboard users */}

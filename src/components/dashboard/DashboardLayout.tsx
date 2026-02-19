@@ -13,7 +13,7 @@ export const DashboardLayout: React.FC = () => {
   const isConnected = useWalletStore((state) => state.isConnected)
 
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center bg-black p-6 md:p-12 lg:p-20">
+    <section className="relative flex min-h-screen w-full items-center justify-center bg-transparent p-4 sm:p-6 md:p-8 lg:p-12 xl:p-20">
       {/* Background Atmosphere */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute top-[-20%] left-[-10%] h-[800px] w-[800px] rounded-full bg-white/[0.02] blur-[150px]" />
