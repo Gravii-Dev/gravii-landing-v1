@@ -12,7 +12,6 @@ const nextConfig = {
     '@splinetool/react-spline',
     '@splinetool/runtime',
   ],
-  basePath: '/landingpage',
   images: {
     remotePatterns: [
       {
