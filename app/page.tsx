@@ -5,7 +5,10 @@ import { Wrapper } from '@/src/components/layout/wrapper'
 import { ScrollReveal } from '@/src/components/ui/ScrollReveal'
 
 const DashboardLayout = dynamic(
-  () => import('@/src/components/dashboard/DashboardLayout').then((m) => m.DashboardLayout),
+  () =>
+    import('@/src/components/dashboard/DashboardLayout').then(
+      (m) => m.DashboardLayout
+    ),
   {
     loading: () => (
       <div className="flex min-h-screen items-center justify-center">
@@ -17,7 +20,9 @@ const DashboardLayout = dynamic(
 
 const LabelsSection = dynamic(
   () =>
-    import('@/src/components/dashboard/LabelsSection').then((m) => m.LabelsSection),
+    import('@/src/components/dashboard/LabelsSection').then(
+      (m) => m.LabelsSection
+    ),
   { loading: () => <div className="min-h-[60vh]" /> }
 )
 

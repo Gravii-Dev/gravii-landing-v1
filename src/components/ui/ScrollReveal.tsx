@@ -43,7 +43,7 @@ export function ScrollReveal({
             trigger: element,
             start: 'top 85%',
             end: 'top 15%',
-            toggleActions: 'play none none reverse',
+            toggleActions: 'play none play reverse',
           },
         }
       )

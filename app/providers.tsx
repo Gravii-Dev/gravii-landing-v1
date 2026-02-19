@@ -11,10 +11,17 @@ const Web3Provider = dynamic(
   { ssr: false }
 )
 
+const SmoothScroll = dynamic(
+  () => import('./smooth-scroll').then((mod) => mod.SmoothScroll),
+  { ssr: false }
+)
+
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <Web3Provider>{children}</Web3Provider>
+      <Web3Provider>
+        <SmoothScroll>{children}</SmoothScroll>
+      </Web3Provider>
     </QueryClientProvider>
   )
 }

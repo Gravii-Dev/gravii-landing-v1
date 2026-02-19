@@ -14,7 +14,8 @@ const Spline = dynamic(() => import('@splinetool/react-spline'), {
 export function HeroSection() {
   return (
     <section className="relative z-10 h-screen w-full overflow-hidden bg-black">
-      <Spline scene="https://prod.spline.design/oSboiVxAhaakfPhN/scene.splinecode" />
+      {/* Spline에서 Publish한 뒤 반영이 안 보이면 아래 버전(v=) 숫자를 올려서 캐시 우회 */}
+      <Spline scene="https://prod.spline.design/oSboiVxAhaakfPhN/scene.splinecode?v=1" />
     </section>
   )
 }
