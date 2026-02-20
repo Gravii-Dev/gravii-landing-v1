@@ -73,6 +73,8 @@ body {
 }
 
 /* Custom crosshair cursor: hide default when active (전체에서 기본 커서 숨김) */
+html.crosshair-cursor-active,
+html.crosshair-cursor-active *,
 body.crosshair-cursor-active,
 body.crosshair-cursor-active * {
   cursor: none !important;
@@ -185,22 +187,14 @@ textarea:focus-visible,
   }
 }
 
-@keyframes crosshair-heartbeat {
-  0%   { transform: translate(-50%, -50%) scale(1); }
-  14%  { transform: translate(-50%, -50%) scale(1.35); }
-  28%  { transform: translate(-50%, -50%) scale(1); }
-  42%  { transform: translate(-50%, -50%) scale(1.2); }
-  56%  { transform: translate(-50%, -50%) scale(1); }
-  100% { transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes crosshair-glow {
-  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-  14%  { opacity: 0.6; transform: translate(-50%, -50%) scale(1.8); }
-  28%  { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-  42%  { opacity: 0.4; transform: translate(-50%, -50%) scale(1.5); }
-  56%  { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+/* 십자마크 위치는 고정, 내부만 scale로 두근두근 (위치 어긋남 방지) */
+@keyframes crosshair-heartbeat-scale {
+  0%   { transform: scale(1); }
+  14%  { transform: scale(1.35); }
+  28%  { transform: scale(1); }
+  42%  { transform: scale(1.2); }
+  56%  { transform: scale(1); }
+  100% { transform: scale(1); }
 }
 
 .animate-float {
@@ -231,8 +225,7 @@ textarea:focus-visible,
   .animate-spin,
   .animate-pulse,
   .animate-bounce,
-  .animate-crosshair-heartbeat,
-  .animate-crosshair-glow {
+  .animate-crosshair-heartbeat {
     animation: none !important;
   }
 }

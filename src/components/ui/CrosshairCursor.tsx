@@ -33,12 +33,18 @@ export function CrosshairCursor() {
   const [isHoveringInteractive, setIsHoveringInteractive] = useState(false)
 
   useEffect(() => {
+    const root = document.documentElement
     if (isPointerDevice) {
+      root.classList.add(BODY_CLASS)
       document.body.classList.add(BODY_CLASS)
     } else {
+      root.classList.remove(BODY_CLASS)
       document.body.classList.remove(BODY_CLASS)
     }
-    return () => document.body.classList.remove(BODY_CLASS)
+    return () => {
+      root.classList.remove(BODY_CLASS)
+      document.body.classList.remove(BODY_CLASS)
+    }
   }, [isPointerDevice])
 
   useEffect(() => {
@@ -91,40 +97,29 @@ export function CrosshairCursor() {
           transform: 'translateY(-50%)',
         }}
       />
-      {/* Crosshair center: 연두색 when over interactive, else white */}
+      {/* Crosshair center: 위치 고정 컨테이너 + 내부만 scale 애니메이션 (위치 어긋남 방지) */}
       <div
         className="absolute size-6 -translate-x-1/2 -translate-y-1/2"
-        style={{
-          left: position.x,
-          top: position.y,
-          animation: isHoveringInteractive
-            ? 'crosshair-heartbeat 0.85s ease-in-out infinite'
-            : 'none',
-        }}
+        style={{ left: position.x, top: position.y }}
       >
-        <span
-          className="absolute top-0 left-1/2 block h-6 w-0.5 -translate-x-px transition-colors duration-150"
-          style={{ backgroundColor: crossColor }}
-        />
-        <span
-          className="absolute top-1/2 left-0 block h-0.5 w-6 -translate-y-px transition-colors duration-150"
-          style={{ backgroundColor: crossColor }}
-        />
-      </div>
-
-      {/* Glow ring: 인터랙티브 요소 위에서 빛나는 원형 후광 */}
-      {isHoveringInteractive && (
         <div
-          className="absolute size-10 rounded-full"
+          className="absolute inset-0 origin-center"
           style={{
-            left: position.x,
-            top: position.y,
-            background:
-              'radial-gradient(circle, var(--color-acid-400, #a3e635) 0%, transparent 70%)',
-            animation: 'crosshair-glow 0.85s ease-in-out infinite',
+            animation: isHoveringInteractive
+              ? 'crosshair-heartbeat-scale 0.85s ease-in-out infinite'
+              : 'none',
           }}
-        />
-      )}
+        >
+          <span
+            className="absolute top-0 left-1/2 block h-6 w-0.5 -translate-x-px transition-colors duration-150"
+            style={{ backgroundColor: crossColor }}
+          />
+          <span
+            className="absolute top-1/2 left-0 block h-0.5 w-6 -translate-y-px transition-colors duration-150"
+            style={{ backgroundColor: crossColor }}
+          />
+        </div>
+      </div>
     </div>
   )
 }
